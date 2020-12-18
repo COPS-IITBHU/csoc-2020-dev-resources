@@ -1,0 +1,638 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Web Applications</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="83befb5d-cf33-4c08-bdb5-1c494ff838ce" class="page sans"><header><img class="page-cover-image" src="Web%20Applications%2083befb5dcf334c08bdb51c494ff838ce/jQuery.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Web%20Applications%2083befb5dcf334c08bdb51c494ff838ce/ajax.png"/></div><h1 class="page-title">Web Applications</h1><table class="properties"><tbody><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>Due Date</th><td><time>@Apr 30, 2020</time></td></tr></tbody></table></header><div class="page-body"><p id="80ad58f1-186b-4e4a-93de-888b1eeebb53" class="">
+</p><nav id="e07c5c92-8ff9-47d6-9abf-0eefe7f82aad" class="block-color-blue table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#45676116-9b00-455d-9765-35859de3f291">Introduction</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3c940e25-9f38-447e-aba0-539e7889a89d">What is a Web Application?</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ac860520-ecf4-475c-a708-33b99893d57f">Components of a Web App</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ad7b06aa-5354-43cd-a522-fd2eb1b2b91c">Web App Architecture</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#e8557c8e-5b78-4278-9a4e-b48ba1ee6127">APIs</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#eb4834bf-ec36-46e4-9c83-596c4a45a5ac">AJAX</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1c67a5d6-cab6-4c10-889c-5e9e20f6769e">Resources</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#fb71f0ea-cf7e-4764-97b7-84f042dd6c70">Challenge and Submission</a></div></nav><p id="785f580d-8af8-4de2-a324-1ff3d5ffe557" class="">
+</p><h1 id="45676116-9b00-455d-9765-35859de3f291" class="">Introduction</h1><h1 id="3c940e25-9f38-447e-aba0-539e7889a89d" class="">What is a Web Application?</h1><p id="ae69f342-7213-4e9d-b09f-0823ad6fe80c" class="">Last week you learnt about creating static websites. The next step before moving on to creating Web Applications is to know about what is the difference between the two. </p><p id="2a82de1e-ddba-4ccb-98f9-45a0a2ad4ba9" class="">Very often, the terminologies dynamic websites and web applications are used exchangably.</p><p id="1576fa10-3e67-4711-b2a4-1d0dcbbef1f7" class="">A very basic and detailed answer to the difference between static websites and dynamic web applications is given here</p><figure id="2fda03bf-3ec9-4f19-8e6f-e2ebddbd06fa"><a href="https://www.quora.com/What-is-the-difference-between-a-web-application-and-a-web-site" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">What is the difference between a web application and a web site?</div><div class="bookmark-description">Answer (1 of 44): You&#x27;ve probably been using the terms &#x27;web application&#x27; and &#x27;website&#x27; so many times that when asked to define each of them individually or to explain the difference, you&#x27;re at a loss for words. It happens when anything becomes a substantial part of our lives.</div></div><div class="bookmark-href"><img src="https://qsf.fs.quoracdn.net/-3-images.favicon.ico-26-ae77b637b1e7ed2c.ico" class="icon bookmark-icon"/>https://www.quora.com/What-is-the-difference-between-a-web-application-and-a-web-site</div></div><img src="https://qph.fs.quoracdn.net/main-custom-t-4401-600x315-jmyorbbyoifolkvsmdwbgvtsbsxehztq.jpeg" class="bookmark-image"/></a></figure><p id="10a78acb-6c30-4578-8081-fd78e7b5deb9" class="">
+</p><h2 id="ac860520-ecf4-475c-a708-33b99893d57f" class="">Components of a Web App</h2><p id="25910daf-c276-4ef1-889f-6bb5bb8b8ec2" class="">A web app is more of functionality than just the design.  Anything worthwhile is not simple and does not come easily. Technically, a Web app is an application program that is stored on a remote server and delivered over the Internet through a browser interface. Creating and serving a web app requires</p><ul id="f8040aac-d0cf-4d94-b781-dbabd9d8a1d9" class="toggle"><li><details open=""><summary>A backend server that supplies the API endpoints to the frontend.</summary><figure id="54e1dc16-eed7-4604-8a73-7ab74b587088"><a href="https://www.codecademy.com/articles/back-end-architecture" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Back-End Web Architecture | Codecademy</div><div class="bookmark-description">Software engineers seem to always be discussing the front-end and the back-end of their apps. But what exactly does this mean? The front-end is the code that is executed on the client side. This code (typically HTML, CSS, and JavaScript) runs in the user&#x27;s browser and creates the user interface.</div></div><div class="bookmark-href"><img src="https://www.codecademy.com/favicon.ico" class="icon bookmark-icon"/>https://www.codecademy.com/articles/back-end-architecture</div></div><img src="https://images.codecademy.com/social/logo-codecademy-social.png" class="bookmark-image"/></a></figure><p id="ab164660-a588-4d50-b7ab-450126a62f3f" class="">Endpoints are important aspects of interacting with server-side web APIs, as they specify where resources lie that can be accessed by third party software. Usually the access is via a URI to which HTTP requests are posted, and from which the response is thus expected.</p><figure id="dcd74509-8481-436f-b611-b023eed8446a"><a href="https://medium.com/techloop/an-introduction-to-backend-development-and-rest-apis-b1a1a978821f" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">An Introduction To Backend Development and REST APIs</div><div class="bookmark-description">What do we mean by the backend of a web application? An application generally has two parts- The frontend and the backend. Many people fail to understand the concepts due to lack of clarity. So, let&#x27;s take an analogy- suppose you are sitting in a car and the basic things that you can see and use are the brakes, clutch, accelerator, gear etc.</div></div><div class="bookmark-href"><img src="https://cdn-static-1.medium.com/_/fp/icons/favicon-rebrand-medium.3Y6xpZ-0FSdWDnPM3hSBIA.ico" class="icon bookmark-icon"/>https://medium.com/techloop/an-introduction-to-backend-development-and-rest-apis-b1a1a978821f</div></div><img src="https://miro.medium.com/max/850/1*yDDMjbenhN_1dzGljVzHVQ.png" class="bookmark-image"/></a></figure></details></li></ul><ul id="57fb18d4-6956-4cd8-8615-d4b628a8654d" class="toggle"><li><details open=""><summary>A server environment (we shall use node) and https server that listens to server ports and sends responses from the server back to the client (Also known as MiddleWare). </summary><figure id="56f4c792-1f6e-478d-ace0-ece281e7855d"><a href="https://medium.com/@gabriellamedas/the-http-server-explained-c41380307917" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">The HTTP Server Explained</div><div class="bookmark-description">What is a server: a few notions In computing, a server is a computer program or a device that provides functionality for other programs or devices, called clients. The functionalities, or services, that a server can provide are multiple and go from sharing data or resources among multiple clients to performing computation for a client.</div></div><div class="bookmark-href"><img src="https://cdn-static-1.medium.com/_/fp/icons/favicon-rebrand-medium.3Y6xpZ-0FSdWDnPM3hSBIA.ico" class="icon bookmark-icon"/>https://medium.com/@gabriellamedas/the-http-server-explained-c41380307917</div></div><img src="https://miro.medium.com/fit/c/96/96/1*Q1sQuAB6K_2t5Q_-PPGehA.jpeg" class="bookmark-image"/></a></figure><figure id="1ee86e7f-28a1-474a-8d77-c41b4bd33ec2"><a href="https://www.codecademy.com/articles/what-is-node" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">What is Node? | Codecademy</div><div class="bookmark-description">Learn about Node.js, a JavaScript runtime for building server-side or desktop applications.</div></div><div class="bookmark-href"><img src="https://www.codecademy.com/favicon.ico" class="icon bookmark-icon"/>https://www.codecademy.com/articles/what-is-node</div></div><img src="https://images.codecademy.com/social/logo-codecademy-social.png" class="bookmark-image"/></a></figure></details></li></ul><ul id="df3c6ffe-7962-4f9c-bbf2-2c4eda726ea0" class="toggle"><li><details open=""><summary>The frontend code which will actually be running in the users&#x27; browser.</summary><p id="efa50d3c-7328-471d-bb9b-527f48b55a94" class="">Read the HTML, CSS and Javascript from here.</p><figure id="f40fee65-fd76-44a0-97c8-2b1cd8b5362f" class="link-to-page"><a href="https://www.notion.so/Web-Dev-and-playing-TicTacToe-f40fee65fd7644a097c82b1cd8b5362f"><img class="icon" src="../Topics%20for%20Week%200%20ceccfd5d060445a38c2329f63b50fb2c/Web%20Dev%20and%20playing%20TicTacToe%200f44704fc7bb45e1ad98b5b238314fac/tic_tac.png"/>Web Dev and playing TicTacToe</a></figure><p id="11b678bf-c1bc-48fc-94e8-3785dadb0880" class="">
+</p></details></li></ul><p id="d597aed3-825a-4d7a-890e-7378016d182a" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="3cc4066d-1813-46d9-a9c5-185ff04c2d8c"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Why Separate backend and frontend code?</strong></div></figure><p id="7b3896ba-a650-42d4-bff7-a2ad73d7930c" class="">For better understanding of why backend and frontend should necessarily be well-separated, read the below article.</p><figure id="59d6f8ea-9379-41e9-b9f3-ce405cd46fd4"><a href="https://www.forbes.com/sites/forbestechcouncil/2018/07/19/seven-reasons-why-a-websites-front-end-and-back-end-should-be-kept-separate/#2088321a4fca" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title"></div></div><div class="bookmark-href">https://www.forbes.com/sites/forbestechcouncil/2018/07/19/seven-reasons-why-a-websites-front-end-and-back-end-should-be-kept-separate/#2088321a4fca</div></div></a></figure><h1 id="ad7b06aa-5354-43cd-a522-fd2eb1b2b91c" class="">Web App Architecture</h1><p id="a335d11a-2584-4d11-9944-db7a8d3110d8" class="">A little extra knowledge never goes amiss</p><figure id="ba35d549-4243-4b94-8f80-37bde571c799"><a href="https://hackr.io/blog/web-application-architecture-definition-models-types-and-more" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Web Application Architecture: Definition, Models, Types, and More</div><div class="bookmark-description">The Internet is no longer about static web pages and longer loading times. Over time, the Internet has made a shift towards active user engagement as well as extended functionality by means of visually pleasing and powerful web applications. A web application is just like a normal computer application except that it works over the Internet.</div></div><div class="bookmark-href"><img src="https://hackr.io/assets/images/programming-images/programming-favicon-16x16.png" class="icon bookmark-icon"/>https://hackr.io/blog/web-application-architecture-definition-models-types-and-more</div></div><img src="https://hackr.io/blog/web-application-architecture-definition-models-types-and-more/thumbnail/large" class="bookmark-image"/></a></figure><p id="cf644ea1-e9bf-4fa5-8129-ef9a0cfd53e1" class="">
+</p><h1 id="e8557c8e-5b78-4278-9a4e-b48ba1ee6127" class="">APIs</h1><p id="1496fb61-49b7-4a11-8366-bf72fdfc6823" class="">So this week you are going to get started with using API endpoints.</p><p id="fcab2b37-0e43-4acf-86dd-40bda897bbdc" class="">For basic knowledge of APIs, take a look.</p><figure id="2c6022b4-124c-4f2b-88b8-9cff9a3b1b1c"><a href="https://searchapparchitecture.techtarget.com/definition/API-endpoint" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">What is an API endpoint? Definition from WhatIs.com.</div><div class="bookmark-description">An API endpoint is a point at which an application program interface ( API) -- the code that allows two software programs to communicate with each other -- connects with the software program. APIs work by sending requests for information from a web application or web server and receiving a response.</div></div><div class="bookmark-href">https://searchapparchitecture.techtarget.com/definition/API-endpoint</div></div><img src="https://cdn.ttgtmedia.com/ITKE/images/logos/TTlogo-379x201.png" class="bookmark-image"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="dbd27741-a402-41ef-b570-53070570978b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">For apps of all shape and sizes (mobile app, web app, IoT, desktop app) they need a well-defined <strong>Application Programming </strong><strong><em>Interface</em></strong><strong> (API)</strong> to abstract away the business logic of backend and to cater to any client supporting only HTTP.</div></figure><p id="0a91a706-0955-4a80-a4ba-e6c050e3a66c" class="">We&#x27;ll cover the most popular pattern of HTTP APIs, the so-called RESTful APIs next week! However for a brief intro, here you go</p><figure id="a9fa7147-240d-455d-b09b-1fbf8c903caf"><a href="https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Understanding And Using REST APIs - Smashing Magazine</div><div class="bookmark-description">If you want to be able to read API documentations and use them effectively, you&#x27;ll first need to understand everything about REST APIs. Let&#x27;s get started. There&#x27;s a high chance you came across the term &quot;REST API&quot; if you&#x27;ve thought about getting data from another source on the internet, such as Twitter or Github.</div></div><div class="bookmark-href"><img src="https://www.smashingmagazine.com/images/favicon/favicon.ico" class="icon bookmark-icon"/>https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/</div></div><img src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/d7681a34-e325-454a-b492-2759b93f7f99/understanding-api-github-root-opt.png" class="bookmark-image"/></a></figure><hr id="dc98bcdc-3657-4c61-b35a-d4ba5f33bb84"/><p id="0b5212ae-c531-4309-81e7-1f53f0b369ce" class="">
+</p><p id="43066314-69a0-4f33-baef-5a94ebff2a68" class="">So much for the conceptual part, let&#x27;s get started with the practical knowledge! </p><h1 id="eb4834bf-ec36-46e4-9c83-596c4a45a5ac" class="">AJAX</h1><p id="7d2fa9b3-7d1e-42f0-9bd1-b51d47fefe98" class="">Ajax stands for Asynchronous JavaScript and XML (though it is mostly used for JSON). AJAX is format and not a programming language. It is a way for web pages to pass data to and from the server without reloading the entire page.The Asynchronous comes from the fact that the request happens in the background while the user can freely interact with the page.</p><p id="7422cc3a-3077-4e33-9982-8742edc23275" class="">Most web apps use the following architecture:</p><ul id="0bac494f-c28d-4a1c-979d-6544a6207783" class="bulleted-list"><li>Presentation is through Browser (HTML and CSS).</li></ul><ul id="3e59b7f1-e8a1-45d4-95e5-c848d1927280" class="bulleted-list"><li>Data is exchanged between client and server in a standard language, like XML or JSON. </li></ul><ul id="39f40808-0000-4922-8526-9ec8c0482e07" class="bulleted-list"><li>Data retrieved using XMLHttpRequest objects in the browser.</li></ul><ul id="021f4042-780c-47fd-9c18-8491ca68d2bf" class="bulleted-list"><li>JavaScript to make everything happen.</li></ul><figure id="ece74f5a-0970-499b-9864-29e83274e10a"><a href="https://www.keycdn.com/support/ajax-programming" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">What Is Ajax Programming - Explained - KeyCDN Support</div><div class="bookmark-description">Ajax is short for Asynchronous JavaScript and XML, which refers to a set of web development techniques rather than an actual programming language. Ajax however, is widely used in client side programming (e.g. JavaScript) to allow for data to be sent and received to and from a database / server.</div></div><div class="bookmark-href"><img src="https://www.keycdn.com/img/favicon/favicon.ico" class="icon bookmark-icon"/>https://www.keycdn.com/support/ajax-programming</div></div><img src="https://www.keycdn.com/img/support/ajax-programming.png" class="bookmark-image"/></a></figure><p id="aa040a7d-9d04-49d4-a500-72f16a2a48a1" class="">
+</p><h2 id="1c67a5d6-cab6-4c10-889c-5e9e20f6769e" class="">Resources</h2><p id="169c0047-de82-4eb3-975f-d206150e1837" class="">Before jumping to the task, we recommend getting yourself comfortable by introducing small AJAX snippets of code through your inline &lt;script&gt; tags. A good place to start would thus be w3schools.</p><figure id="82c3b638-d763-4e5d-8e54-87af565a59b6"><a href="https://www.w3schools.com/xml/ajax_intro.asp" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">AJAX Introduction</div><div class="bookmark-description">AJAX is a developer&#x27;s dream, because you can: Update a web page without reloading the page Request data from a server - after the page has loaded Receive data from a server - after the page has loaded Send data to a server - in the background In every chapter, you can edit the examples online, and click on a button to view the result.</div></div><div class="bookmark-href"><img src="https://www.w3schools.com/favicon.ico" class="icon bookmark-icon"/>https://www.w3schools.com/xml/ajax_intro.asp</div></div><img src="https://www.w3schools.com/xml/ajax.gif" class="bookmark-image"/></a></figure><p id="521d11d3-5e79-4d48-8276-ac676a580dab" class="">
+</p><p id="9a9d924e-87e2-4723-b08a-263637cf3b8f" class="">Documentation can be found here to help you out with more advanced APIs</p><figure id="7631c826-5bd2-4c38-933f-341ea99ed333"><a href="https://api.jquery.com/jquery.ajax/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">jQuery.ajax()</div><div class="bookmark-description">Description: Perform an asynchronous HTTP (Ajax) request. A string containing the URL to which the request is sent. A set of key/value pairs that configure the Ajax request. All settings are optional. A default can be set for any option with $.ajaxSetup(). See jQuery.ajax( settings ) below for a complete list of all settings.</div></div><div class="bookmark-href"><img src="https://api.jquery.com/jquery-wp-content/themes/api.jquery.com/i/favicon.ico" class="icon bookmark-icon"/>https://api.jquery.com/jquery.ajax/</div></div><img src="https://api.jquery.com/jquery-wp-content/themes/jquery/content/books/jquery-in-action.jpg" class="bookmark-image"/></a></figure><h1 id="fb71f0ea-cf7e-4764-97b7-84f042dd6c70" class="">Challenge and Submission</h1><p id="acfa1d03-b4e0-4efc-84bd-2299ad8b0ffe" class="">
+</p><p id="9e379ece-8604-421c-aaf7-b05cae4ab28a" class=""><strong>So much for learning, here is your next Assignment!</strong></p><figure id="9e4b8a78-10e2-4b08-8f01-bea30cab520c"><a href="https://github.com/COPS-IITBHU/csoc-2020-task-1" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">COPS-IITBHU/csoc-2020-task-1</div><div class="bookmark-description">In this task you will be working on a todo application made using basic HTML, CSS and JS. The main motive of this task is to make you familiar with: Rest APIs AJAX Manipulating DOM using JavaScript Follow the following steps to setup this project.</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/COPS-IITBHU/csoc-2020-task-1</div></div><img src="https://avatars1.githubusercontent.com/u/38392463?s=400&amp;v=4" class="bookmark-image"/></a></figure><p id="f21520db-6b7c-4ced-bd2b-bd4e8d824e70" class=""><strong>All the details of the task are provided in the </strong><strong><a href="https://github.com/COPS-IITBHU/csoc-2020-task-1/blob/master/README.md">README.md</a></strong><strong> file.</strong></p><p id="71bc11f2-0d7d-4a50-a200-9aa4f6f64bbf" class=""><strong>As you are aware, you need to fork from and the repository, clone the forked repository, complete the task, commit and push your changes and finally open the pull request back here.</strong></p><p id="3f95d060-6949-43c9-b924-842914b56502" class="">
+</p></div></article></body></html>

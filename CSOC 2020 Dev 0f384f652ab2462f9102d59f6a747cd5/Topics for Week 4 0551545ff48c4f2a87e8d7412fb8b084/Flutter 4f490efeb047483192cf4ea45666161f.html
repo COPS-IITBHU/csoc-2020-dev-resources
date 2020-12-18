@@ -1,0 +1,635 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Flutter</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="4f490efe-b047-4831-92cf-4ea45666161f" class="page sans"><header><img class="page-cover-image" src="Flutter%204f490efeb047483192cf4ea45666161f/flutter.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Flutter%204f490efeb047483192cf4ea45666161f/Dart.svg"/></div><h1 class="page-title">Flutter</h1><table class="properties"><tbody><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>Due Date</th><td><time>@Jun 2, 2020</time></td></tr></tbody></table></header><div class="page-body"><p id="456b0d33-503d-4886-bf42-64f663febacd" class="">
+</p><nav id="f30854ec-9b10-49c3-a257-54b5d29dd85c" class="block-color-blue table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#800359a4-f560-491e-8e89-13c02fb6b478">Introduction</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3fc3f304-0367-47f7-ac3c-ed588aec5625">UI Toolkit</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9e6897c6-60a9-47a5-9684-7625288c1915">Native mobile application</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2d53d3d2-9332-42af-824b-511216f3a484">Codebase</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#89cc5410-dfc3-4ae3-96b9-9a4ec6d554c2">Why Flutter?</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4ae22f92-6413-4ad8-9559-2702a4e449ed">Flutter Architecture</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3c910054-5207-42ce-8fd1-0bc934a28d5a">What does flutter consist of?</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#403a0efe-21a3-4958-9077-e8687455f4e1">Installation</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2ac4d8d2-29f6-43ee-b41a-892e04faf1b0">Basics</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#855c2b16-48ee-4044-863d-12ea313043f2">Dart</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#086a2c0f-1f7c-4768-8d3c-65c8bfae3ea7">Create your first app</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#0783bf46-6497-432c-9ccb-5cff772337de">Basic Understanding</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#a1314dc3-7b53-45e5-abf1-052087fe11a7">What is Future in flutter? </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3f4ad6f9-45e6-4da4-99e1-39016fae8465">Optional topics</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#60772b34-66db-47b5-9411-dc3702fdb349">Local database</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#14605a09-b408-439d-bf9a-b31f7cbcc90b">Task</a></div></nav><h1 id="800359a4-f560-491e-8e89-13c02fb6b478" class="">Introduction</h1><p id="39aff04a-ab4b-42e8-9e73-424b4a96a12b" class="">A quote by the very company that developed flutter, sums it all up...</p><blockquote id="d183594c-4a8d-4ab4-a9ea-9092db6e3099" class="">&quot;Flutter is Google’s UI toolkit for building beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.” - Google</blockquote><p id="6ca167c0-8d5d-4107-8aa1-cc7764febd6e" class="">
+</p><p id="347c1a4c-9261-4dad-914c-54b3364b4932" class="">The Keywords to understand in the above quote are</p><h3 id="3fc3f304-0367-47f7-ac3c-ed588aec5625" class="">UI Toolkit</h3><p id="b5b55075-ee0c-4ef7-b6d7-f1824e3580ce" class="">A UI kit generally contains a bunch of graphic files including UI components (buttons, check boxes, progress bars, etc.) for the purpose of user interface design. This prevents the wasting of time figuring out how to implement components, but create wonderful designs.</p><h2 id="9e6897c6-60a9-47a5-9684-7625288c1915" class="">Native mobile application</h2><p id="09e45c8b-b8a4-4bf3-89e2-dfc288160958" class="">Native mobile application, are usually applications that has been written using the native development language and tools specific to that platform. A native iOS application written in Swift or Objective-C and compiled through Xcode, a native Android application written in Kotlin or Java and compiled using Android Studio.</p><p id="cf33e7be-c558-4451-ad26-37e150da235a" class="">Since these applications are developed using the platform’s default solutions, developers have full and easier access to the device’s capabilities; like all the device’s sensors, the user’s address book. Native applications are also more performant than web or hybrid applications. </p><p id="2d5d4f51-8a14-494b-8d4a-d96a7fe53df1" class="">However, any application written for iOS using Swift cannot run on Android, and vice versa, thus forcing you to develop specifically for each platform. </p><p id="ebf82266-35b4-493f-99c3-8d2fb829cc60" class="">These disadvantages are not the issue in flutter. To know why, see <a href="https://www.notion.so/Flutter-93a6b6e2db3e498dac899cc252f86f17#341581adf3d749b3afae51224bdd423c">Flutter Architecture</a>.</p><h2 id="2d53d3d2-9332-42af-824b-511216f3a484" class="">Codebase</h2><p id="993263fd-ae80-438f-8865-92b6a6ac8a27" class="">The source code. By single codebase it means that you can create web, mobile and desktop applications by writing code only for one and allow access to all through this. The Programming language flutter uses is Dart.</p><h1 id="89cc5410-dfc3-4ae3-96b9-9a4ec6d554c2" class="">Why Flutter?</h1><p id="28a5928f-8657-4695-bb1e-592be3d9e207" class="">For a start, have a look at companies that use flutter</p><figure id="2c51ce9a-042e-4008-90a8-8a1435d8d93c" class="image"><a href="Flutter%204f490efeb047483192cf4ea45666161f/flut.png"><img style="width:870px" src="Flutter%204f490efeb047483192cf4ea45666161f/flut.png"/></a></figure><p id="89438f18-c45f-41c6-9b8f-ef470380419f" class="">Flutter provides the advantage of native applications providing performance, greater control over the hardware as well as ease of use for developers.</p><h1 id="4ae22f92-6413-4ad8-9559-2702a4e449ed" class="">Flutter Architecture</h1><p id="8118e40a-52e3-4345-8389-3a20b128dd50" class="">Best to get the overview from flutter itself to know about it and it&#x27;s uses.</p><figure id="3c8c198f-7983-4149-b42d-71dd2ddd8abf"><a href="https://flutter.dev/docs/resources/technical-overview" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Technical overview</div><div class="bookmark-description">Flutter is an app SDK for building high-performance, high-fidelity apps for iOS, Android, web ( beta), and desktop ( technical preview) from a single codebase. The goal is to enable developers to deliver high-performance apps that feel natural on different platforms. We embrace differences in scrolling behaviors, typography, icons, and more.</div></div><div class="bookmark-href"><img src="https://flutter.dev/images/favicon.png" class="icon bookmark-icon"/>https://flutter.dev/docs/resources/technical-overview</div></div><img src="https://flutter.dev/images/flutter-logo-sharing.png" class="bookmark-image"/></a></figure><p id="dde21021-c31f-4bfe-815c-a083786c091c" class="">Here is the architecture in short.</p><figure id="8f25d037-d3ab-41f5-803a-d349a2a15039"><a href="https://buildflutter.com/how-flutter-works/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">How Flutter Works - Build Flutter</div><div class="bookmark-description">Flutter is built in a whole new way, compared to other frameworks, working more like a gaming engine, than a traditional application framework. I will go through the high level basics of how Flutter works, and how it delivers the simple, high performance outcome. Starting at a very high level, your app is composed of ...</div></div><div class="bookmark-href"><img src="https://buildflutter.com/wp-content/uploads/2018/04/cropped-buildflutter-1-192x192.png" class="icon bookmark-icon"/>https://buildflutter.com/how-flutter-works/</div></div><img src="https://buildflutter.com/wp-content/uploads/2018/04/humming.png" class="bookmark-image"/></a></figure><p id="2e7c86c7-2549-412f-9785-1e1a6852f135" class="">Here is a video explaining the same.</p><figure id="9990b7f3-0cbb-4e06-8131-06f348eeb943"><a href="https://youtu.be/l-YO9CmaSUM" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">How is Flutter different for app development</div><div class="bookmark-description">In this video, hear Martin Aguinis from the Flutter team discuss what goes on under the hood when you create apps with Flutter and how it&#x27;s different from ot...</div></div><div class="bookmark-href"><img src="https://s.ytimg.com/yts/img/favicon-vfl8qSV2F.ico" class="icon bookmark-icon"/>https://youtu.be/l-YO9CmaSUM</div></div><img src="https://i.ytimg.com/vi/l-YO9CmaSUM/hqdefault.jpg" class="bookmark-image"/></a></figure><p id="113fc66c-ac20-4335-a650-75d732315fee" class="">
+</p><h2 id="3c910054-5207-42ce-8fd1-0bc934a28d5a" class="">What does flutter consist of?</h2><p id="aae0dc12-d4dc-478a-a96c-bcb8b966875b" class="">
+</p><p id="94f8458f-fab5-4477-add1-3690c37097dc" class="">Flutter consists of two important parts:</p><ul id="1f28e6b3-d9d1-4123-a78e-4ebb2b310a87" class="bulleted-list"><li>An SDK (Software Development Kit): A collection of tools that are going to help you develop your applications. This includes tools to compile your code into native machine code (code for iOS and Android).</li></ul><ul id="c1fe6e1e-38dc-4756-9177-709f1b2a3ef5" class="bulleted-list"><li>A Framework (UI Library based on widgets): A collection of reusable UI elements (buttons, text inputs, sliders, and so on) that you can personalize for your own needs.</li></ul><h1 id="403a0efe-21a3-4958-9077-e8687455f4e1" class="">Installation</h1><p id="40c27c33-b4a8-4223-b874-6ea24ffb58e7" class="">Here is how you can install Flutter. Do not install Android Studio right now, this week you do not require it. Read until writing your first flutter app.</p><figure id="7e13571f-b0b3-4bec-a013-c4cd0b6a178f"><a href="https://flutter.dev/docs/get-started/install" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Install</div><div class="bookmark-description">How to set up your code editor.</div></div><div class="bookmark-href"><img src="https://flutter.dev/images/favicon.png" class="icon bookmark-icon"/>https://flutter.dev/docs/get-started/install</div></div><img src="https://flutter.dev/images/flutter-logo-sharing.png" class="bookmark-image"/></a></figure><p id="9c849460-e253-4072-8ff4-371ef30591aa" class="">
+</p><p id="c563a15c-d26f-4d9e-916c-21befd82e88c" class="">To use flutter consistently between different terminal sessions, go through this</p><figure id="b326aa93-6d3d-47fe-9b2c-21f26083de81"><a href="https://flutter.dev/docs/get-started/install/linux#update-your-path" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Linux install</div><div class="bookmark-description">To install and run Flutter, your development environment must meet these minimum requirements: Operating Systems: Linux (64-bit) Disk Space: 600 MB (does not include disk space for IDE/tools).</div></div><div class="bookmark-href"><img src="https://flutter.dev/images/favicon.png" class="icon bookmark-icon"/>https://flutter.dev/docs/get-started/install/linux#update-your-path</div></div><img src="https://flutter.dev/images/flutter-logo-sharing.png" class="bookmark-image"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="b5cbf925-bf89-44aa-aedf-b1d44437462e"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Install a suitable IDE. VS Code (compared to Android Studio) is good choice for a light and better experience. </div></figure><h1 id="2ac4d8d2-29f6-43ee-b41a-892e04faf1b0" class="">Basics</h1><h2 id="855c2b16-48ee-4044-863d-12ea313043f2" class="">Dart</h2><p id="bdd31ab4-cc55-413f-bdac-80f029e8c74c" class="">To develop with Flutter, you will use a programming language called Dart. You can download dart sdk or use the online DartPad. But as we are developing flutter apps, we do not need Dart sdk.</p><p id="ba71ecfb-c827-4a45-8eb5-0ff95ce5165d" class="">Dart focuses on front-end development, and you can use it to create mobile and web applications.</p><p id="2477b7a8-c466-4d08-aa9f-e5e054a1f151" class="">Let&#x27;s learn a little about it.  (Use below given online IDE)</p><figure id="252b869e-a515-4b96-9c42-b0a08926d684"><a href="https://dartpad.dartlang.org/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">DartPad</div></div><div class="bookmark-href"><img src="https://dartpad.dartlang.org/dart-192.png" class="icon bookmark-icon"/>https://dartpad.dartlang.org/</div></div></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="0b62775e-4d3a-48b3-8289-077a1401b8df"><div style="font-size:1.5em"><span class="icon">👇</span></div><div style="width:100%">Use the links below for issues related to dart language</div></figure><figure id="389ecd5d-4be8-41af-9ac3-f054fd79d477"><a href="https://www.topcoder.com/thrive/articles/Dart%20Programming%20Language" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Topcoder</div><div class="bookmark-description">Topcoder is a crowdsourcing marketplace that connects businesses with hard-to-find expertise. The Topcoder Community includes more than one million of the world&#x27;s top designers, developers, data scientists, and algorithmists. Global enterprises and startups alike use Topcoder to accelerate innovation, solve challenging problems, and tap into specialized skills on demand.</div></div><div class="bookmark-href">https://www.topcoder.com/thrive/articles/Dart%20Programming%20Language</div></div><img src="http://www.topcoder.com/community-app-assets/images/ea451049daea868f371518a730c27b8e.jpg" class="bookmark-image"/></a></figure><p id="f3a081f0-8766-4d93-9d61-4e2f93a99096" class="">
+</p><figure id="39ca171f-f598-44ab-8f97-78bb6c58320e"><a href="https://www.tutorialspoint.com/dart_programming/dart_programming_syntax.htm" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Dart Programming - Syntax</div><div class="bookmark-description">Syntax defines a set of rules for writing programs. Every language specification defines its own syntax. A Dart program is composed of − Variables and Operators Classes Functions Expressions and Programming Constructs Decision Making and Looping Constructs Comments Libraries and Packages Typedefs Data structures represented as Collections / Generics Let us start with the traditional &quot;Hello World&quot; example − main() { print(&quot;Hello World!&quot;); } The main() function is a predefined method in Dart.</div></div><div class="bookmark-href"><img src="https://www.tutorialspoint.com/favicon.ico" class="icon bookmark-icon"/>https://www.tutorialspoint.com/dart_programming/dart_programming_syntax.htm</div></div><img src="https://www.tutorialspoint.com/dart_programming/images/run_test1_dart.jpg" class="bookmark-image"/></a></figure><h2 id="086a2c0f-1f7c-4768-8d3c-65c8bfae3ea7" class="">Create your first app</h2><p id="b0261012-f170-4b3f-a436-89b09fa0dd73" class="">The best way to learn flutter is to create an app on your own. Dont worry, its easy!</p><p id="6418ea12-ddfb-4b80-84eb-b91601f19b1d" class="">If you are more of a watch-and-learn person, here&#x27;s a full video to help you get started. Just skip the initial installation parts: </p><figure id="a6c333b5-f99e-4e43-b066-5ac7d90e2081"><a href="https://youtu.be/GLSG_Wh_YWc" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Flutter Tutorial for Beginners - Build iOS and Android Apps with Google&#x27;s Flutter &amp; Dart</div><div class="bookmark-description">You don&#x27;t need to learn Android/ Java and iOS/ Swift development to build real native mobile apps! Join the full Flutter course: https://acad.link/flutter Ch...</div></div><div class="bookmark-href"><img src="https://s.ytimg.com/yts/img/favicon-vfl8qSV2F.ico" class="icon bookmark-icon"/>https://youtu.be/GLSG_Wh_YWc</div></div><img src="https://i.ytimg.com/vi/GLSG_Wh_YWc/hqdefault.jpg" class="bookmark-image"/></a></figure><p id="5ddf3234-9e96-4e2b-b7c4-1a17312eba7c" class="">Or if you want to read and learn, you can visit these:</p><figure id="a66ad853-6b46-424a-981a-2c9830037b36"><a href="https://medium.com/@dev.n/the-complete-flutter-series-article-1-exploring-a-flutter-project-and-building-your-first-flutter-e438ea941d70" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">The Flutter Series: Exploring a Flutter project and building your first Flutter app</div><div class="bookmark-description">The Complete Flutter Series is a series of articles focused on cross-platform app development on the Flutter framework for everyone from beginners to experienced mobile developers. Flutter is a cross-platform mobile app development framework by Google and is an alternative to traditional Android or iOS development.</div></div><div class="bookmark-href"><img src="https://cdn-static-1.medium.com/_/fp/icons/favicon-rebrand-medium.3Y6xpZ-0FSdWDnPM3hSBIA.ico" class="icon bookmark-icon"/>https://medium.com/@dev.n/the-complete-flutter-series-article-1-exploring-a-flutter-project-and-building-your-first-flutter-e438ea941d70</div></div><img src="https://miro.medium.com/max/3204/1*a5iGE2JCdMJtTWGwMXFiwA.png" class="bookmark-image"/></a></figure><figure id="f78655fb-89d0-427d-8ac8-f324e7c1bc82"><a href="https://medium.com/@dev.n/the-complete-flutter-series-article-2-basic-widgets-and-layout-in-flutter-92a4fbd4a3e1" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">The Flutter Series: Basic Widgets and Layout</div><div class="bookmark-description">The Complete Flutter Series is a series of articles focused on cross-platform app development on the Flutter framework for everyone from beginners to experienced mobile developers. In the last article we talked about a Flutter project and the files it includes. We also explored the code of the default counter app and dived into how the app works.</div></div><div class="bookmark-href"><img src="https://cdn-static-1.medium.com/_/fp/icons/favicon-rebrand-medium.3Y6xpZ-0FSdWDnPM3hSBIA.ico" class="icon bookmark-icon"/>https://medium.com/@dev.n/the-complete-flutter-series-article-2-basic-widgets-and-layout-in-flutter-92a4fbd4a3e1</div></div><img src="https://miro.medium.com/max/800/1*5fwM69fZ7-R17TZQGgQHtQ.png" class="bookmark-image"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="b23b1ac4-7035-4b2a-aea8-52e9b415f3f4"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%">Don&#x27;t forget to switch on USB Debugging on your mobile. (In case you are not using an emulator)</div></figure><p id="774b7840-432f-4f42-a317-844afa2f0de0" class="">
+</p><p id="6463b8f4-b682-40cb-b70a-91da04ffedb8" class="">For reference, keep this handy</p><figure id="e6a3bfcf-f3ff-47f8-9952-3f120d00e0b1"><a href="https://api.flutter.dev/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Flutter - Dart API docs</div><div class="bookmark-description">Flutter API docs, for the Dart programming language.</div></div><div class="bookmark-href">https://api.flutter.dev/</div></div></a></figure><h2 id="0783bf46-6497-432c-9ccb-5cff772337de" class="">Basic Understanding</h2><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1b34614c-82d7-415b-8fbd-0b136033055f"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">Crucial for understanding, so don&#x27;t skip!</div></figure><figure id="90f41d69-272e-4a00-97c1-a717b54372c4"><a href="https://www.javatpoint.com/flutter-widgets" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Flutter Widgets - Javatpoint</div><div class="bookmark-description">In this section, we are going to learn the concept of a widget, how to create it, and their different types available in the Flutter framework. We have learned earlier that everything in Flutter is a widget. If you are familiar with React or Vue.js, then it is easy to understand the Flutter.</div></div><div class="bookmark-href"><img src="https://static.javatpoint.com/images/favicon2.png" class="icon bookmark-icon"/>https://www.javatpoint.com/flutter-widgets</div></div><img src="https://static.javatpoint.com/tutorial/flutter/images/flutter-widgets.png" class="bookmark-image"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="6e5d762e-d855-4a8b-a009-d3c0e7a63fd5"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%">Everything in flutter is a widget!</div></figure><figure id="091662ea-22ff-4c94-ad40-ba978bc1484a"><a href="https://medium.com/jlouage/container-de5b0d3ad184" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Flutter - Container Cheat Sheet</div><div class="bookmark-description">A convenience widget that combines common painting, positioning, and sizing widgets. Container Class URL The Container widget is used to contain a child widget with the ability to apply some styling properties. If the Container widget has no child it will automatically fill the given area on the screen, otherwise it will wrap the height &amp; width of the given child element.</div></div><div class="bookmark-href"><img src="https://cdn-static-1.medium.com/_/fp/icons/favicon-rebrand-medium.3Y6xpZ-0FSdWDnPM3hSBIA.ico" class="icon bookmark-icon"/>https://medium.com/jlouage/container-de5b0d3ad184</div></div><img src="https://miro.medium.com/max/1200/1*wnIEgP1gNMrK5gZU7QS0-A.jpeg" class="bookmark-image"/></a></figure><p id="087eaf39-ea59-4ac3-bb56-a3b2dcc47533" class="">
+</p><h3 id="a1314dc3-7b53-45e5-abf1-052087fe11a7" class="">What is Future in flutter? </h3><p id="8e86b12c-2e9f-412e-9fb1-fb4f27580eb4" class="">You must have encountered keywords like async, await and Future till now. These are very important blocks that one should comprehend. </p><p id="d75f24c2-6aca-480e-99d5-f31a0bb25de9" class="">Get this concept with this video created by Google developers themselves</p><figure id="a4bc653c-5368-4d7f-abf8-35dfe68a8654"><a href="https://www.youtube.com/watch?v=SmTCmDMi4BY" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Async/Await - Flutter in Focus</div><div class="bookmark-description">This is the fourth video in the Flutter in Focus series on asynchronous coding in Dart. In this episode, learn how to use the async and await keywords with D...</div></div><div class="bookmark-href"><img src="https://s.ytimg.com/yts/img/favicon-vfl8qSV2F.ico" class="icon bookmark-icon"/>https://www.youtube.com/watch?v=SmTCmDMi4BY</div></div><img src="https://i.ytimg.com/vi/SmTCmDMi4BY/hqdefault.jpg" class="bookmark-image"/></a></figure><h1 id="3f4ad6f9-45e6-4da4-99e1-39016fae8465" class="">Optional topics</h1><h2 id="60772b34-66db-47b5-9411-dc3702fdb349" class="">Local database</h2><p id="020c7f61-a456-4fbb-99b9-c9d9827f7cad" class="">So far so good. Let&#x27;s learn a new concept - how to store the information in mobile memory? </p><p id="9b3852a1-7a6d-47f1-8d25-733620b07f7f" class="">Let&#x27;s create a simple dynamic to-do list app</p><figure id="6dbdb430-aa7a-41c9-bdb9-07fb22a49ac7"><a href="https://simpleactivity435203168.wordpress.com/2019/09/19/to-do-list-in-flutter-with-sqlite-as-local-database/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">To-do List in Flutter with SQLite as local database</div><div class="bookmark-description">Introduction Data is very important for users since it would be inconvenient for them to type their information every time or wait for the network to load the same data again. In situations like this, it would be better to save data locally. In this tutorial, we&#x27;ll learn how to crate To-do list with...</div></div><div class="bookmark-href"><img src="https://simpleactivity435203168.files.wordpress.com/2018/07/cropped-ionic-logo-portrait.png?w=192" class="icon bookmark-icon"/>https://simpleactivity435203168.wordpress.com/2019/09/19/to-do-list-in-flutter-with-sqlite-as-local-database/</div></div><img src="https://simpleactivity435203168.files.wordpress.com/2019/09/screenshot_20190919-223246.jpg?fit=440%2C330" class="bookmark-image"/></a></figure><p id="04cf1c09-6f98-42bb-8dca-484468f95fdc" class="">Or if you would like to work it out with a video -</p><figure id="28a7c7bc-4d9a-4ecf-8e86-4dd8fc3efa2a"><a href="https://www.youtube.com/watch?v=xrCBVwYjcvQ" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Using SQLite in Flutter</div><div class="bookmark-description">If you&#x27;d like to see a written version of this video check out the link below: http://garrettlove.com/using-sqlite-in-flutter/ Channel Survey: https://forms....</div></div><div class="bookmark-href"><img src="https://s.ytimg.com/yts/img/favicon-vfl8qSV2F.ico" class="icon bookmark-icon"/>https://www.youtube.com/watch?v=xrCBVwYjcvQ</div></div><img src="https://i.ytimg.com/vi/xrCBVwYjcvQ/hqdefault.jpg" class="bookmark-image"/></a></figure><h1 id="14605a09-b408-439d-bf9a-b31f7cbcc90b" class="">Task</h1><p id="bad6dd05-b5f1-4cfa-a728-fe5e5aad8977" class=""><strong>All the details of the task are provided in the README.md file.</strong></p><p id="0391ff4d-5c7d-4055-86e0-ea0054d30880" class=""><strong>As you are aware, you need to fork from and the repository, clone the forked repository, complete the task, commit and push your changes and finally open the pull request back here.</strong></p><figure id="3ee247ce-dec0-4ec2-ae0f-fa761ac3e980"><a href="https://github.com/COPS-IITBHU/csoc-2020-task-flutter" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">https://github.com/COPS-IITBHU/csoc-2020-task-flutter</div></div><div class="bookmark-href">https://github.com/COPS-IITBHU/csoc-2020-task-flutter</div></div></a></figure></div></article></body></html>

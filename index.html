@@ -1,0 +1,637 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>CSOC 2020 Dev</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="0f384f65-2ab2-462f-9102-d59f6a747cd5" class="page sans"><header><img class="page-cover-image" src="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/WhatsApp_Image_2020-04-15_at_4.02.05_PM.jpeg" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/WhatsApp_Image_2020-04-15_at_3.29.30_PM.jpeg"/></div><h1 class="page-title">CSOC 2020 Dev</h1></header><div class="page-body"><p id="5174a16d-570d-43dc-a101-f987fec74318" class="">Welcome to CSOC Dev! Here&#x27;s all the resources and tasks you need to know, complete, and focus on for every week.</p><nav id="17f5affe-80df-49d5-818d-9dd3ba14ec2f" class="block-color-blue table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#63884d6a-a36d-43dd-a08f-abbd8f696ec4">Heads up! </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#86ac6c32-29b2-402a-8fd4-83bce7efa754">Week 0</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5d54234f-3053-4a89-af33-c430ba19394f">Week 1</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#b8c55189-da0b-41c6-bf8d-b53b1100724c">Week 2</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#16fec049-7dd5-4cc6-9c6b-1811673e5470">Week 3</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#cac55ed1-3b22-415b-b326-c1f1771df089">Week 4</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#f7664f8c-06e1-45d8-b752-fa1c2c07677b">Things to keep in mind</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5020be45-5aac-4de8-a021-364aaa9393a6">No plagiarism</a></div></nav><h1 id="63884d6a-a36d-43dd-a08f-abbd8f696ec4" class="">Heads up! </h1><p id="b01826b9-2c6d-4c10-bded-e6c0111f1485" class="">All the great learning resources of COPS Dev group can also be found at <a href="https://copsiitbhu.co.in/resources/dev/">COPS Dev Resources</a>.</p><h1 id="86ac6c32-29b2-402a-8fd4-83bce7efa754" class="">Week 0</h1><p id="2bd0c386-a24a-4284-be91-8a523aec37d0" class="">Consider this week as &quot;revision of the fundamentals&quot; since most have already cleared some or all of the topics of this week. If you think you&#x27;re weak in any of the topics below or haven&#x27;t finished even one of the tasks listed, then make sure to finish them now. </p><p id="0df5b450-2a7f-4cad-a290-045d30171ba8" class="">Throughout this course, we would require Linux to do assignments and resources will be posted for the same OS. It&#x27;s expected that most have their Linux system ready due to COPS Linux Installation fest, but no worries! We&#x27;re sharing all the required resources to get your system in shape for the following weeks and the basic shell commands you need to master. </p><p id="098045a8-d373-4d7f-a968-ca541cd1ea8b" class="">This week will be critical for the beginners to learn to work productively on their software projects and also to learn the art of asking questions the “hacker’s way”. </p><p id="b639a20b-4132-444a-a47d-166b9c04994b" class="">We&#x27;ve also covered Git and G<a href="https://github.com/">ithub</a> earlier, during the Dev-OSS workshops, so make sure to revise it well!</p><p id="4aca4e59-70ed-4abb-af4e-157cf9537f96" class="">There&#x27;s a basic web dev project too to finish by the end of this week (Apr 23), so get your HTML tools back in shape! </p><div id="ceccfd5d-0604-45a3-8c23-29f63b50fb2c" class="collection-content"><h4 class="collection-title">Topics for Week 0</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>Due Date</th></tr></thead><tbody><tr id="f9258492-0ac5-4f4d-9101-f19d8f2ec14d"><td class="cell-title"><a href="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%200%20ceccfd5d060445a38c2329f63b50fb2c/Linux%20f92584920ac54f4d9101f19d8f2ec14d.html"><img class="icon" src="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%200%20ceccfd5d060445a38c2329f63b50fb2c/Linux%20f92584920ac54f4d9101f19d8f2ec14d/Ubuntu-Logo.png"/>Linux</a></td><td class="cell-w@C6"><time>@Apr 23, 2020</time></td></tr><tr id="9295a660-d189-4e57-bcc5-f38a4b7d774f"><td class="cell-title"><a href="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%200%20ceccfd5d060445a38c2329f63b50fb2c/Git%20and%20Github%209295a660d1894e57bcc5f38a4b7d774f.html"><img class="icon" src="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%200%20ceccfd5d060445a38c2329f63b50fb2c/Git%20and%20Github%209295a660d1894e57bcc5f38a4b7d774f/git.png"/>Git and Github</a></td><td class="cell-w@C6"><time>@Apr 23, 2020</time></td></tr><tr id="0f44704f-c7bb-45e1-ad98-b5b238314fac"><td class="cell-title"><a href="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%200%20ceccfd5d060445a38c2329f63b50fb2c/Web%20Dev%20and%20playing%20TicTacToe%200f44704fc7bb45e1ad98b5b238314fac.html"><img class="icon" src="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%200%20ceccfd5d060445a38c2329f63b50fb2c/Web%20Dev%20and%20playing%20TicTacToe%200f44704fc7bb45e1ad98b5b238314fac/tic_tac.png"/>Web Dev and playing TicTacToe</a></td><td class="cell-w@C6"><time>@Apr 23, 2020</time></td></tr><tr id="5bf55468-5b29-404b-9f9c-58e7f26f2895"><td class="cell-title"><a href="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%200%20ceccfd5d060445a38c2329f63b50fb2c/New%20Initiative%205bf554685b29404b9f9c58e7f26f2895.html">New Initiative</a></td><td class="cell-w@C6"></td></tr></tbody></table></div><p id="c9fbdb07-701a-40ae-abb4-f9bc0a9e6be3" class="">
+</p><p id="6a252935-c49a-48ad-8905-fc00b6d096b7" class="">
+</p><h1 id="5d54234f-3053-4a89-af33-c430ba19394f" class="">Week 1</h1><p id="f717a9d3-5fd2-4b9c-8cb3-4c6cf6fcf415" class="">Now that you&#x27;re comfortable with the basic tools required for a developer, let&#x27;s get started with some real Development!</p><p id="e4befee0-3a12-4078-92a8-79126d8a874c" class="">This Week will be based on Web Development. You have already made yourself familiar with HTML, CSS and JavaScript which are nice and fancy, but to build websites of practical use, you need something more than just static Content in your site. To build impressive websites, you shall need to add backend support to it too. Now this is what CSOC Dev brings to you this week : Web Applications and Django to complete your full stack learning!</p><p id="eb562072-224a-4005-ab17-5fad592a4ffc" class="">
+</p><p id="31bbd63b-7dd4-43aa-ad48-9d8e25b8793b" class=""><strong>Note :</strong> <em>For this week, keep focus primarily on building the Web Application</em>. </p><p id="5af7f1b3-1ff4-4de9-ac89-522a2f3c27d2" class="">Next week we shall be back with Django, with yet another assignment on it. We are however sharing the resources this week for all of you who shall complete the task before the given deadline ie. 30 April. It will help you get a better idea of what all could be going on behind your screen the next time you surf sites like Instagram, Udemy, Coursera, etc etc.... Yes! they are backed by Django!!</p><p id="76057142-18ef-4e85-aeca-b191ac6d9364" class="">
+</p><div id="0d78d07c-7599-4220-8245-2deff7afbe03" class="collection-content"><h4 class="collection-title">Topics for Week 1</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>Due Date</th></tr></thead><tbody><tr id="83befb5d-cf33-4c08-bdb5-1c494ff838ce"><td class="cell-title"><a href="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%201%200d78d07c7599422082452deff7afbe03/Web%20Applications%2083befb5dcf334c08bdb51c494ff838ce.html"><img class="icon" src="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%201%200d78d07c7599422082452deff7afbe03/Web%20Applications%2083befb5dcf334c08bdb51c494ff838ce/ajax.png"/>Web Applications</a></td><td class="cell-w@C6"><time>@Apr 30, 2020</time></td></tr><tr id="9122a697-1d9a-4307-a0c5-505e520a8a8c"><td class="cell-title"><a href="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%201%200d78d07c7599422082452deff7afbe03/New%20Initiative%209122a6971d9a4307a0c5505e520a8a8c.html">New Initiative</a></td><td class="cell-w@C6"></td></tr></tbody></table></div><p id="851f702f-e25a-40b2-8bcd-f4a72d89818f" class="">
+</p><p id="92650975-5395-462c-ba36-220ad957dd5e" class="">
+</p><h1 id="b8c55189-da0b-41c6-bf8d-b53b1100724c" class="">Week 2</h1><p id="30b333c4-d9be-4a55-a2b2-59993e2f27aa" class="">Loading...After completing the first task now you would be comfortable with APIs and GET, POST, PUT, PATCH and DELETE requests. But now you would want to know how the back end server was made. Well it was made using Django. Also the assignment this week would be based on Django.</p><p id="b1616cf9-b112-4e6e-bfcb-42bb8aaecb58" class="">
+</p><p id="7b87e28c-1c26-4a84-802f-17c67e3a8468" class=""><strong>Note :</strong> <em>For this week, keep focus primarily on Django</em>. </p><p id="096716d8-a631-4e6f-bf26-198a689f3de9" class="">Next week we shall be back with Django Rest Framework (The framework used to build REST APIs), with yet another assignment on it. We are however sharing the resources this week for all of you who shall complete the task before the given deadline i.e. 7 May.</p><p id="92c6dee0-0618-40c3-b2ce-c5131329547d" class="">
+</p><div id="2ed92762-029e-48c7-b62b-57725630c86b" class="collection-content"><h4 class="collection-title">Topics for Week 2</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>Due Date</th></tr></thead><tbody><tr id="694f4833-ff19-4b0e-8b05-84030c6406d9"><td class="cell-title"><a href="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%202%202ed92762029e48c7b62b57725630c86b/Django%20694f4833ff194b0e8b0584030c6406d9.html"><img class="icon" src="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%202%202ed92762029e48c7b62b57725630c86b/Django%20694f4833ff194b0e8b0584030c6406d9/django-logo-F46C1DD95E-seeklogo.com.png"/>Django</a></td><td class="cell-w@C6"><time>@May 7, 2020</time></td></tr><tr id="d11efcc7-3550-42ec-87c2-1ada8b13b677"><td class="cell-title"><a href="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%202%202ed92762029e48c7b62b57725630c86b/New%20Initiative%20d11efcc7355042ec87c21ada8b13b677.html">New Initiative</a></td><td class="cell-w@C6"></td></tr></tbody></table></div><p id="81c5d2a5-dfb9-49e4-baa7-8ca2f6834e1f" class="">
+</p><p id="8c68ccae-f61b-4dac-9958-44e5d1b42382" class="">
+</p><h1 id="16fec049-7dd5-4cc6-9c6b-1811673e5470" class="">Week 3</h1><p id="1c77afdd-dbdc-4e42-935a-aa85c601d879" class="">Now that you have completed the CSOC Django Assignment, you built your own webapp backed with Django as the backend. Overnight your webapp became a star success!! Congrats! They love it so much, that they want a mobile phone version! Time to create an Android Version! And an iOS version....</p><p id="5ae50702-3652-4eed-93ad-de54d5e904cd" class="">And then you have to replicate 2 times the same code to Add, View, Remove, Update and Delete data, with different languages.</p><p id="804705c1-bd25-4d88-a3b2-18ee738e356b" class="">That opens the door to many possible mistakes… And that is where DRF(Django REST Framework ) shines out.....</p><p id="39e3c0e6-0bb1-477a-b10e-4c7d6421c03b" class="">DRF enables you to host the same backend for web, mobile and desktop applications.</p><p id="d3407da6-36d6-4547-a6f5-38b1e5d2c781" class="">Needless to say, we have so lovingly prepared an assignment for you that will make you &quot;REST-less&quot; (pun intended :)) </p><p id="147fc819-a13b-4987-8c21-fb4ed53fb312" class=""><strong>Note :</strong> <em>For this week, keep focus primarily on DRF </em>.</p><p id="86e95295-bdd3-4285-be18-4dd41563c7c0" class="">As always, we have attatched next week&#x27;s material (Flutter) for those who complete the week&#x27;s task beforehand. The assignment is available  too for you to take a look at.</p><div id="b59b54a1-7058-48e1-bf56-ee20e20ff443" class="collection-content"><h4 class="collection-title">Topics for Week 3</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>Due Date</th></tr></thead><tbody><tr id="d27fc357-6963-4ce1-9749-c9a3132775b2"><td class="cell-title"><a href="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%203%20b59b54a1705848e1bf56ee20e20ff443/Django%20REST%20Framework%20d27fc35769634ce19749c9a3132775b2.html"><img class="icon" src="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%203%20b59b54a1705848e1bf56ee20e20ff443/Django%20REST%20Framework%20d27fc35769634ce19749c9a3132775b2/DRF.png"/>Django REST Framework</a></td><td class="cell-w@C6"><time>@May 17, 2020</time></td></tr><tr id="af0b9b49-f5f1-4892-a9b0-2e57136ee353"><td class="cell-title"><a href="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%203%20b59b54a1705848e1bf56ee20e20ff443/New%20Initiative%20af0b9b49f5f14892a9b02e57136ee353.html">New Initiative</a></td><td class="cell-w@C6"></td></tr></tbody></table></div><h1 id="cac55ed1-3b22-415b-b326-c1f1771df089" class="">Week 4</h1><p id="837ad778-7f09-4c93-ba0f-d08f9de4b43d" class="">Hey there! This week we bring something much more interesting that all you have been through yet. Mobile app development and Virtual Reality... And Yes! you don&#x27;t need knowledge of any of our previous weeks.... Knowing fully that two topics together is a bit too much, we offer you an option between the two. But chose well... What you chose now will have to continue on that for the next week too... </p><p id="795d275b-d071-4323-b8c4-3567573280e9" class="">As usual, we have uploaded some of the resources for the next week too.</p><p id="ae7795bb-b821-4026-b113-27f5c4ac2a28" class=""><strong>Note :</strong> <em>For this week, keep focus primarily on Flutter or Web VR</em>.</p><div id="0551545f-f48c-4f2a-87e8-d7412fb8b084" class="collection-content"><h4 class="collection-title">Topics for Week 4</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>Due Date</th></tr></thead><tbody><tr id="618e2619-c54f-434a-a49a-324ceab85d66"><td class="cell-title"><a href="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%204%200551545ff48c4f2a87e8d7412fb8b084/Web%20VR%20(Virtual%20Reality)%20618e2619c54f434aa49a324ceab85d66.html"><img class="icon" src="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%204%200551545ff48c4f2a87e8d7412fb8b084/Web%20VR%20(Virtual%20Reality)%20618e2619c54f434aa49a324ceab85d66/Icon_HMD.png"/>Web VR (Virtual Reality)</a></td><td class="cell-w@C6"><time>@Jun 2, 2020</time></td></tr><tr id="4f490efe-b047-4831-92cf-4ea45666161f"><td class="cell-title"><a href="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%204%200551545ff48c4f2a87e8d7412fb8b084/Flutter%204f490efeb047483192cf4ea45666161f.html"><img class="icon" src="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%204%200551545ff48c4f2a87e8d7412fb8b084/Flutter%204f490efeb047483192cf4ea45666161f/Dart.svg"/>Flutter</a></td><td class="cell-w@C6"><time>@Jun 2, 2020</time></td></tr><tr id="917731ac-8f74-4cce-8d50-6336fe8b36d8"><td class="cell-title"><a href="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%204%200551545ff48c4f2a87e8d7412fb8b084/Web%20Augmented%20Reality%20(A%20R%20)%20917731ac8f744cce8d506336fe8b36d8.html"><img class="icon" src="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%204%200551545ff48c4f2a87e8d7412fb8b084/Web%20Augmented%20Reality%20(A%20R%20)%20917731ac8f744cce8d506336fe8b36d8/logosquare256.png"/>Web Augmented Reality (A.R.)</a></td><td class="cell-w@C6"><time>@Jun 9, 2020</time></td></tr><tr id="b8a82519-047e-4695-b69b-14ea82865da4"><td class="cell-title"><a href="CSOC%202020%20Dev%200f384f652ab2462f9102d59f6a747cd5/Topics%20for%20Week%204%200551545ff48c4f2a87e8d7412fb8b084/New%20Initiative%20b8a82519047e4695b69b14ea82865da4.html">New Initiative</a></td><td class="cell-w@C6"></td></tr></tbody></table></div><h1 id="f7664f8c-06e1-45d8-b752-fa1c2c07677b" class="">Things to keep in mind</h1><h3 id="5020be45-5aac-4de8-a021-364aaa9393a6" class="">No plagiarism</h3><p id="ed0da60a-576f-49a6-af14-77317175bbcc" class="">Plagiarism in any of the tasks isn&#x27;t allowed and can easily be caught. Learn from others&#x27; code but don&#x27;t copy, otherwise you&#x27;re just giving yourself a handicap in learning.</p></div></article></body></html>

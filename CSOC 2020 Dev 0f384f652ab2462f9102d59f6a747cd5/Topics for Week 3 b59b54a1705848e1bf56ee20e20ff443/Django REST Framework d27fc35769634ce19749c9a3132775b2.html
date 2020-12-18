@@ -1,0 +1,637 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Django REST Framework</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="d27fc357-6963-4ce1-9749-c9a3132775b2" class="page sans"><header><img class="page-cover-image" src="Django%20REST%20Framework%20d27fc35769634ce19749c9a3132775b2/DRF%201.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Django%20REST%20Framework%20d27fc35769634ce19749c9a3132775b2/DRF.png"/></div><h1 class="page-title">Django REST Framework</h1><table class="properties"><tbody><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>Due Date</th><td><time>@May 17, 2020</time></td></tr></tbody></table></header><div class="page-body"><nav id="c62b7bc1-6232-4181-8cb9-694272c80f77" class="block-color-blue table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#cb666886-0de1-427f-9d62-865d1250a7e2">Introduction</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4bafe773-212e-4213-99f0-86d2ed9e2e6f">What is REST and what are RESTful APIs?</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2474473d-4bd8-4cb8-b3af-8e20b3854cd3">What is DRF? Why should I learn it?</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#221d6a2a-3e62-4c13-abc2-4f9a804f9919">Documentation and Installation</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#0a4a41ec-33af-4d6f-8cce-68e398957e39">Architecture</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1e63818c-7c9f-4453-9433-1d7b1c39f8ad">Quickstart</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#cda8580e-8e70-4d8c-bf70-7ef6d321dc0a">Searializers</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#52ce6612-ee81-47c3-ab29-6d726a548e6a">Requests and Responses</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#bd2d6264-abfe-4d64-a41c-4cc2695c7e94"><strong>ViewSets and Routers</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#570d4293-e505-4ef5-855e-dcf566e640fb">Tutorial</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#0767cbef-7680-4fa8-9163-ea1aaf97c7d0">Other resources</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#70d2446b-94d2-4adb-a20c-a348bf4d7f17">Clean Code</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4086e416-aed9-4edd-807b-d3af6b872439">Task and Submission</a></div></nav><h1 id="cb666886-0de1-427f-9d62-865d1250a7e2" class="">Introduction</h1><h2 id="4bafe773-212e-4213-99f0-86d2ed9e2e6f" class="">What is REST and what are RESTful APIs?</h2><p id="afcd7c25-d36d-4567-9657-e0eb23edd4ed" class="">Representational State Transfer (REST) is an architectural style that specifies a particular style (and a few constraints),  that if applied to a web service render desirable services to work best on the Web , such as performance, scalability, and modifiability. In a RESTful API, endpoints (URLs) define the structure of the API and how end users access data from our application using the HTTP methods: GET, POST, PUT, DELETE.</p><p id="de208e34-3a68-4ffb-8e3d-b6e5befef92e" class="">Here you can learn more about RESTful Web Services</p><figure id="bd037acc-d7a9-466c-b07c-98a8036d4275"><a href="https://dzone.com/articles/introduction-to-rest-api-restful-web-services" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Introduction to REST APIs - RESTful Web Services - DZone Integration</div><div class="bookmark-description">Intro to RESTful Web Services REST stands for REpresentational State T ransfer. It is a popular architectural approach to create your API&#x27;s in today&#x27;s world. You may also like: Get Plenty of REST: REST API Tutorials What is REST? What are the fundamentals of REST APIs?</div></div><div class="bookmark-href"><img src="https://dzone.com/themes/dz20/images/favicon.png" class="icon bookmark-icon"/>https://dzone.com/articles/introduction-to-rest-api-restful-web-services</div></div><img src="http://dz2cdn4.dzone.com/storage/article-thumb/12720915-thumb.jpg" class="bookmark-image"/></a></figure><p id="e8c36379-493d-4540-a3fd-4d9dc77db914" class="">Status codes are issued by a server in response to a client&#x27;s request made to the server. The server always returns a message for every request, whether it is successful or not. Thus they are helpful to know the state of your code.</p><figure id="7d21df18-00fc-44b5-b35c-1ebe445a9fae"><a href="https://restfulapi.net/http-status-codes/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">HTTP Status Codes</div><div class="bookmark-description">REST APIs use the Status-Line part of an HTTP response message to inform clients of their request&#x27;s overarching result. RFC 2616 defines the Status-Line syntax as shown below: Status-Line = HTTP-Version SP Status-Code SP Reason-Phrase CRLF HTTP defines forty standard status codes that can be used to convey the results of a client&#x27;s request.</div></div><div class="bookmark-href"><img src="https://restfulapi.net/wp-content/uploads/favicon.ico" class="icon bookmark-icon"/>https://restfulapi.net/http-status-codes/</div></div><img src="https://restfulapi.net/wp-content/uploads/rest.png" class="bookmark-image"/></a></figure><p id="763c486d-6618-45d9-9220-44863880cf42" class="">
+</p><h2 id="2474473d-4bd8-4cb8-b3af-8e20b3854cd3" class="">What is DRF? Why should I learn it?</h2><p id="6acf30ca-29f9-466b-8bf2-8f312082eb2f" class="">Consider that after having completed the CSOC Django Assignment, you now built your own webapp backed with Django as the backend. Overnight your webapp became a star success!! Congrats! They love it so much, that they want a mobile phone version! Time to create an Android Version! And an iOs version....</p><p id="e761d87e-a406-45a7-ae91-274c6957305e" class="">And then you have to replicate 2 times the same code to Add, View, Remove, Update and Delete data, with different languages.</p><p id="c8d7f4fb-5532-4019-b5f6-544533cb377f" class="">That opens the door to many possible mistakes… And that is where DRF shines out.....</p><p id="fce157cb-e6ad-468d-b142-82ccf22cc758" class="">In short, as DRF uses URIs for accessing the DataBase, we can provide access to the database to any application that can read from, generate and send an URI. May that be an android app, webapp, iOS app etc.. </p><p id="af036ea3-8d45-410c-98d5-b3fed916b14b" class="">Consider this against using Django without DRF library, where to provide access to Android, iOS in addition to web, you have to replicate 2 times the same code to Add, View, Remove, Update and Delete data, with different languages.</p><p id="ce2f8e34-d000-47cb-b065-06bc71a788a7" class="">All that DRF provides can be implemented through Django without explicitly using DRF, but it is tedious.</p><p id="12086a94-16ea-41a1-bc4c-7b90b07bcb19" class="">Now that was a good start to understanding DRF, but a developer&#x27;s understanding and terminologies goes beyond... Offering you this possibility, have a go through the documentation.</p><h3 id="221d6a2a-3e62-4c13-abc2-4f9a804f9919" class="">Documentation and Installation</h3><figure id="156cf2fd-782e-4a30-b161-787bf29a5e4c"><a href="https://www.django-rest-framework.org/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Home - Django REST framework</div><div class="bookmark-description">Django REST framework is a powerful and flexible toolkit for building Web APIs. Some reasons you might want to use REST framework: REST framework is a collaboratively funded project. If you use REST framework commercially we strongly encourage you to invest in its continued development bysigning up for a paid plan .</div></div><div class="bookmark-href"><img src="https://www.django-rest-framework.org/img/favicon.ico" class="icon bookmark-icon"/>https://www.django-rest-framework.org/</div></div></a></figure><p id="a58c107a-7d32-4ac9-bcaf-62bffdc36e24" class="">
+</p><h2 id="0a4a41ec-33af-4d6f-8cce-68e398957e39" class="">Architecture</h2><p id="771e5ca1-d63d-40f2-a9b0-e7188e578f71" class="">A DRF API is composed of 3 layers: the serializer, the viewset, and the router.</p><ul id="9f7a82b1-4e6d-4ca9-9f1f-ebd61bb58aad" class="bulleted-list"><li>Serializer: converts the information stored in the database and defined by the <a href="https://docs.djangoproject.com/en/2.0/topics/db/models/">Django models</a> into a format which is more easily transmitted via an API.</li></ul><ul id="6de852b1-e3fb-41ad-981d-63d6703b161c" class="bulleted-list"><li>Viewset: defines the functions (read, create, update, delete) which will be available via the API</li></ul><ul id="058c1c40-e1b6-4220-9023-92d2aa0f4339" class="bulleted-list"><li>Router: defines the URLs which will provide access to each viewset.</li></ul><h1 id="1e63818c-7c9f-4453-9433-1d7b1c39f8ad" class="">Quickstart</h1><p id="f9553a0b-a923-4be0-8672-0b0195f0f5cc" class="">After having installed </p><figure id="ba0fa356-429b-4a75-b0ae-2ff8fae2c397"><a href="https://www.django-rest-framework.org/tutorial/quickstart/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Quickstart</div><div class="bookmark-description">We&#x27;re going to create a simple API to allow admin users to view and edit the users and groups in the system. Create a new Django project named tutorial, then start a new app called quickstart.</div></div><div class="bookmark-href"><img src="https://www.django-rest-framework.org/img/favicon.ico" class="icon bookmark-icon"/>https://www.django-rest-framework.org/tutorial/quickstart/</div></div><img src="https://www.django-rest-framework.org/img/quickstart.png" class="bookmark-image"/></a></figure><h2 id="cda8580e-8e70-4d8c-bf70-7ef6d321dc0a" class="">Searializers</h2><p id="c9c789e7-2ae5-4f7d-bf94-0ba68e03cb58" class="">Django models intuitively represent data stored in your database, but an API will need to transmit information in a less complex structure. While your data will be represented as instances of your Model classes in your Python code, it needs to be translated into a format like JSON in order to be communicated over an API.</p><p id="26c5d814-2536-438b-a8ba-72ed0419f2e5" class="">You can learn about serializers here</p><figure id="693cfff6-9819-4846-97a7-6af3662016a9"><a href="https://www.django-rest-framework.org/tutorial/1-serialization/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">1 - Serialization - Django REST framework</div><div class="bookmark-description">This tutorial will cover creating a simple pastebin code highlighting Web API. Along the way it will introduce the various components that make up REST framework, and give you a comprehensive understanding of how everything fits together. The tutorial is fairly in-depth, so you should probably get a cookie and a cup of your favorite brew before getting started.</div></div><div class="bookmark-href"><img src="https://www.django-rest-framework.org/img/favicon.ico" class="icon bookmark-icon"/>https://www.django-rest-framework.org/tutorial/1-serialization/</div></div></a></figure><p id="a060d237-2f84-4b53-995b-c27e47cbcbf6" class="">
+</p><h2 id="52ce6612-ee81-47c3-ab29-6d726a548e6a" class="">Requests and Responses</h2><p id="572a2397-eb76-4daf-82d6-64a0c7972596" class="">Well aware that you are about the REST framework, there is nothing better than getting started right away with Django&#x27;s Request and Responses.</p><figure id="0588622f-a17f-4780-891e-deed7bdf69ab"><a href="https://www.django-rest-framework.org/tutorial/2-requests-and-responses/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">2 - Requests and responses - Django REST framework</div><div class="bookmark-description">From this point we&#x27;re going to really start covering the core of REST framework. Let&#x27;s introduce a couple of essential building blocks. REST framework introduces a Request object that extends the regular HttpRequest, and provides more flexible request parsing.</div></div><div class="bookmark-href"><img src="https://www.django-rest-framework.org/img/favicon.ico" class="icon bookmark-icon"/>https://www.django-rest-framework.org/tutorial/2-requests-and-responses/</div></div></a></figure><h2 id="bd2d6264-abfe-4d64-a41c-4cc2695c7e94" class=""><strong>ViewSets and Routers</strong></h2><p id="2430e1dd-e1ac-4121-bcdf-65e4a343a230" class="">A given serializer will parse information in both directions (reads and writes), but the ViewSet is where the available operations are defined. The most common ViewSet is the ModelViewSet, which has the following built-in operations:</p><ul id="49fac7c2-7337-4650-ba34-4fd1a2df7712" class="bulleted-list"><li>Create an instance: <code>create()</code></li></ul><ul id="b5daceb5-6c4e-43ac-8c30-a5712faf4939" class="bulleted-list"><li>Retrieve/Read an instance: <code>retrieve()</code></li></ul><ul id="f53350de-0157-4f9b-9e3d-d163727d622b" class="bulleted-list"><li>Update an instance (all fields or only selected fields): <code>update()</code> or <code>partial_update()</code></li></ul><ul id="f708640c-19fc-4a0a-8b58-f2c2518dd324" class="bulleted-list"><li>Destroy/Delete an instance: <code>destroy()</code></li></ul><ul id="015c773a-1e10-448e-afac-8cc6a79c014f" class="bulleted-list"><li>List instances (paginated by default): <code>list()</code></li></ul><p id="2b53f5c9-9e19-406f-a154-b9a039f21d10" class="">
+</p><figure id="994deae5-a5d9-43bd-b9c8-1c6ba50ab588"><a href="https://www.django-rest-framework.org/tutorial/6-viewsets-and-routers/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">6 - Viewsets and routers - Django REST framework</div><div class="bookmark-description">REST framework includes an abstraction for dealing with ViewSets, that allows the developer to concentrate on modeling the state and interactions of the API, and leave the URL construction to be handled automatically, based on common conventions.</div></div><div class="bookmark-href"><img src="https://www.django-rest-framework.org/img/favicon.ico" class="icon bookmark-icon"/>https://www.django-rest-framework.org/tutorial/6-viewsets-and-routers/</div></div></a></figure><h1 id="570d4293-e505-4ef5-855e-dcf566e640fb" class="">Tutorial</h1><figure id="6f7fb65d-ebf2-4f27-8e70-e0d14200ae51"><a href="https://wsvincent.com/official-django-rest-framework-tutorial-beginners-guide/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Official Django REST Framework Tutorial - A Beginners Guide | LearnDjango</div><div class="bookmark-description">A beginner-friendly guide to the official Django REST Framework This is a beginner-friendly guide to the official Django Rest Framework tutorial. If you have struggled to complete the official tutorial on your own, consider this guide a good place to start instead. The final code is exactly the same and is available on Github.</div></div><div class="bookmark-href">https://wsvincent.com/official-django-rest-framework-tutorial-beginners-guide/</div></div><img src="https://learndjango.com/static/images/django30_welcome.png" class="bookmark-image"/></a></figure><p id="38fcf263-5406-40df-9e5e-40a4e3eaac99" class="">
+</p><p id="83be5ed7-aab8-4208-930f-a584cab0bd67" class="">Django docs contain a tutorial to build Polls API. You can try implementing the same app using DRF. Follow below tutorials:</p><figure id="2819431d-7cb4-4ef3-9235-7eaae23d15d4"><a href="https://books.agiliq.com/projects/django-api-polls-tutorial/en/latest/introduction.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Introductions - Building API Django 2.0 documentation</div><div class="bookmark-description">Building APIs with Django and Django Rest Framework starts where the Django &quot;Polls&quot; tutorial stops, and takes you through building the polls app, but this time using APIs. You will learn the basics of Django Rest Framework including serialization, views, generic views, viewsets, testing, access control.</div></div><div class="bookmark-href"><img src="https://books.agiliq.com/favicon.ico" class="icon bookmark-icon"/>https://books.agiliq.com/projects/django-api-polls-tutorial/en/latest/introduction.html</div></div></a></figure><p id="891731de-cc65-41df-a1b1-e5fc3ffb0ddb" class="">
+</p><h1 id="0767cbef-7680-4fa8-9163-ea1aaf97c7d0" class="">Other resources</h1><p id="d12a8f84-5ae7-45b6-b163-87af22677705" class="">You can refer to other articles in these websites for better understanding of Django and DRF:</p><figure id="3ad6d8b5-5ea4-4707-864e-b57601eb7c5b"><a href="https://www.agiliq.com/categories/#drf" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Categories</div></div><div class="bookmark-href"><img src="https://www.agiliq.com/assets/images/icon-196x196.png" class="icon bookmark-icon"/>https://www.agiliq.com/categories/#drf</div></div></a></figure><figure id="0e1db915-0062-4aff-9883-42b3bae1583e"><a href="https://wsvincent.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Will Vincent</div><div class="bookmark-description">Will is a developer and educator.</div></div><div class="bookmark-href"><img src="https://wsvincent.com/assets/favicons/favicon.ico" class="icon bookmark-icon"/>https://wsvincent.com/</div></div></a></figure><figure id="3011876d-825d-42f9-a0e9-da94f95266c9"><a href="https://simpleisbetterthancomplex.com/archive/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Article Archive - Simple is Better Than Complex</div><div class="bookmark-description">This is a blog about Python, Django and Web Development. New posts every week.</div></div><div class="bookmark-href"><img src="https://simpleisbetterthancomplex.com/favicon.png" class="icon bookmark-icon"/>https://simpleisbetterthancomplex.com/archive/</div></div><img src="https://simpleisbetterthancomplex.com/img/facebook_banner.jpg" class="bookmark-image"/></a></figure><p id="1b9440b9-a9b7-40f0-85e2-34e0931852c8" class="">
+</p><h1 id="70d2446b-94d2-4adb-a20c-a348bf4d7f17" class="">Clean Code</h1><p id="7b5530a6-b8a9-4608-9432-d865872d0d42" class="">One should always use sensible names for views, variables etc. and write clean code.
+Follow this guide to understand how to name your urls.</p><figure id="53b99715-9add-4e5a-9a97-104bceff8659"><a href="https://restfulapi.net/resource-naming/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">REST API Naming Conventions and Best Practices - REST API Tutorial</div><div class="bookmark-description">In REST, primary data representation is called Resource. Having a strong and consistent REST resource naming strategy - will definitely prove one of the best design decisions in the long term. The key abstraction of information in REST is a resource. Any information that can be named can be a resource: a document or image, a temporal service (e.g.</div></div><div class="bookmark-href"><img src="https://restfulapi.net/wp-content/uploads/favicon.ico" class="icon bookmark-icon"/>https://restfulapi.net/resource-naming/</div></div><img src="https://restfulapi.net/wp-content/uploads/rest.png" class="bookmark-image"/></a></figure><p id="f23d9dbb-6e1f-4032-b99d-8c1784f5f19d" class="">
+</p><p id="83a8c331-d9b2-4159-b734-0384493c68f3" class="">Python naming guidelines</p><figure id="9d82688b-b409-4fff-89f5-46ca719e5d33"><a href="https://www.python.org/dev/peps/pep-0008/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">PEP 8 -- Style Guide for Python Code</div><div class="bookmark-description">The official home of the Python Programming Language</div></div><div class="bookmark-href"><img src="https://www.python.org/static/favicon.ico" class="icon bookmark-icon"/>https://www.python.org/dev/peps/pep-0008/</div></div><img src="https://www.python.org/static/opengraph-icon-200x200.png" class="bookmark-image"/></a></figure><p id="961f3bf5-fb94-44a7-9ba6-4bfefef2a537" class="">
+</p><h1 id="4086e416-aed9-4edd-807b-d3af6b872439" class="">Task and Submission</h1><p id="520345dd-5d94-4b84-ae5c-88d2cfa513b5" class=""><strong>So much for learning, here is your next Assignment!</strong></p><p id="f566834d-f969-497d-9a44-c778ca685161" class=""><strong>All the details of the task are provided in the README.md file.</strong></p><p id="19377649-ce07-4ea1-86ff-672172bb261c" class=""><strong>As you are aware, you need to fork from and the repository, clone the forked repository, complete the task, commit and push your changes and finally open the pull request back here.</strong></p><figure id="b8ddfc8e-d23a-4e71-a5ac-cd84ed504160"><a href="https://github.com/COPS-IITBHU/csoc-2020-task-3/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title"></div></div><div class="bookmark-href">https://github.com/COPS-IITBHU/csoc-2020-task-3/</div></div></a></figure></div></article></body></html>

@@ -1,0 +1,630 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Git and Github</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="9295a660-d189-4e57-bcc5-f38a4b7d774f" class="page sans"><header><img class="page-cover-image" src="Git%20and%20Github%209295a660d1894e57bcc5f38a4b7d774f/github.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Git%20and%20Github%209295a660d1894e57bcc5f38a4b7d774f/git.png"/></div><h1 class="page-title">Git and Github</h1><table class="properties"><tbody><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>Due Date</th><td><time>@Apr 23, 2020</time></td></tr></tbody></table></header><div class="page-body"><nav id="4a676beb-8a0b-495f-b5ff-60762f1159a4" class="block-color-blue table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#44a56269-dc74-484f-bcd2-d88116146abc">Introduction</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#d36b85a2-be42-4d31-a129-63b654aec716">Installation</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#d1f65853-426f-49d5-8abb-00b0134742b8">Resources</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#eb274d01-88e9-43c6-adae-5f05f98aa416">GitKraken and GitHub Desktop</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#85b086c6-ba93-47fe-91eb-d02dab5395f2">Practice and Tasks</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#8ac28880-d46b-427a-87b3-57b325d42bcc">First Challenge</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#91c637f5-455c-42ff-bb7d-30edc36be105">Second Challenge</a></div></nav><h1 id="44a56269-dc74-484f-bcd2-d88116146abc" class="">Introduction</h1><p id="fe4dcee8-a737-4263-8384-f757387e23c1" class="">Git is a very popular version control system(VCS), used in Open Source Development. It is a crucial skill to learn while developing in a team. </p><p id="cf00bb7b-63a7-4122-96c0-4feea3d58bfc" class="">GitHub is a web based service for version control using Git. It is a social networking site for developers, where you can look at other people&#x27;s code, identify issues and even propose changes.</p><figure id="5a69ffa4-435b-4404-8474-8b55f3dbcef6"><a href="https://codeburst.io/git-and-github-in-a-nutshell-b0a3cc06458f" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Git and GitHub in a NutShell.</div><div class="bookmark-description">Git is a VCS - Version Control System. What that really means is, Git helps us manage our project files. One of the primary things that git does and also the primary reason it exists is to keep track of the entire history of things that you are working on.</div></div><div class="bookmark-href"><img src="https://miro.medium.com/fit/c/256/256/1*mNmxddJJTzkiBfK77mWuGA.png" class="icon bookmark-icon"/>https://codeburst.io/git-and-github-in-a-nutshell-b0a3cc06458f</div></div><img src="https://miro.medium.com/max/906/1*pXPseZOkwPqHGKaBXGS3sQ.png" class="bookmark-image"/></a></figure><h1 id="d36b85a2-be42-4d31-a129-63b654aec716" class="">Installation</h1><figure id="57dc58cd-d5cc-47b9-a85b-b88d77823462"><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Git - Installing Git</div><div class="bookmark-description">Before you start using Git, you have to make it available on your computer. Even if it&#x27;s already installed, it&#x27;s probably a good idea to update to the latest version. You can either install it as a package or via another installer, or download the source code and compile it yourself.</div></div><div class="bookmark-href"><img src="https://git-scm.com/favicon.ico" class="icon bookmark-icon"/>https://git-scm.com/book/en/v2/Getting-Started-Installing-Git</div></div><img src="https://git-scm.com/images/logo@2x.png" class="bookmark-image"/></a></figure><h1 id="d1f65853-426f-49d5-8abb-00b0134742b8" class="">Resources</h1><figure id="aa633d0d-da71-4f0f-b5d8-c7afe044dae2"><div class="source"><a href="https://www.youtube.com/watch?v=SWYqp7iY_Tc">https://www.youtube.com/watch?v=SWYqp7iY_Tc</a></div></figure><p id="2159ef15-dd5e-4111-bdc3-36ea1250cbe3" class="">
+</p><ul id="6a9e930f-2c04-4b62-9398-4886b8e5a4e0" class="toggle"><li><details open=""><summary>Git branching Tutorial</summary></details></li></ul><ul id="05fe3e34-0562-4f94-8ae7-e637fce67738" class="toggle"><li><details open=""><summary>G<a href="https://github.com/shivanshs9">ithub</a> learning Guide</summary><figure id="91f93b7f-2e1a-4794-9e3f-ed198ade4095"><a href="https://try.github.io/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Resources to learn Git</div><div class="bookmark-description">Git, GitHub, DVCS, oh my! Learn all the lingo and the basics of Git.</div></div><div class="bookmark-href"><img src="https://try.github.io/favicon.ico" class="icon bookmark-icon"/>https://try.github.io/</div></div></a></figure></details></li></ul><ul id="944cc2c5-e165-4f97-b6f3-cd52b0956234" class="toggle"><li><details open=""><summary>Gitignore Explanation</summary><figure id="6eac39f7-5dc4-4391-8e39-cd1e7cb87c05"><a href="https://www.atlassian.com/git/tutorials/saving-changes/gitignore" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">.gitignore file - ignoring files in Git | Atlassian Git Tutorial</div><div class="bookmark-description">Git sees every file in your working copy as one of three things: tracked - a file which has been previously staged or committed; untracked - a file which has not been staged or committed; or ignored - a file which Git has been explicitly told to ignore.</div></div><div class="bookmark-href"><img src="https://wac-cdn.atlassian.com/assets/img/favicons/gitguide/favicon.png" class="icon bookmark-icon"/>https://www.atlassian.com/git/tutorials/saving-changes/gitignore</div></div></a></figure></details></li></ul><ul id="21f3d68b-ed25-46da-b425-4e723dca4685" class="toggle"><li><details open=""><summary>G<a href="https://github.com/shivanshs9">ithub</a> Best Practices</summary><p id="e35b10e0-1cfd-4b1f-a337-8f66ee2296dc" class="">Here are some Github best practices you should keep in mind when working on live project:</p><figure id="f9422b96-115f-4a24-b31a-f502ef3d7d37"><a href="https://www.datree.io/resources/github-best-practices" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Top GitHub best practices for developers</div><div class="bookmark-description">‍ We interviewed hundreds of software developers to understand their development workflows and how they work with GitHub. Using our own product, we also scanned thousands of GitHub repositories for our customers. This list of GitHub best practices is derived from the insights we gleamed from those experiences.</div></div><div class="bookmark-href"><img src="https://assets.website-files.com/5d514f718e8309c01d798013/5d9da3e658a892b65d39834a_Favicon.png" class="icon bookmark-icon"/>https://www.datree.io/resources/github-best-practices</div></div><img src="https://assets.website-files.com/5d514fd9493b0575f03520bd/5d664911071de81410eeb6b4_github-best-practices-1-1200x600.jpg" class="bookmark-image"/></a></figure></details></li></ul><ul id="fd5c6865-15a7-4b81-bf9f-eb331bd99bd3" class="toggle"><li><details open=""><summary><strong>Git Cheatsheet </strong></summary><figure id="659c44d3-4908-42c5-961c-5ec2fc006f94"><a href="https://github.com/joshnh/Git-Commands/blob/master/README.md" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">joshnh/Git-Commands</div><div class="bookmark-description">A list of commonly used Git commands. Contribute to joshnh/Git-Commands development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/joshnh/Git-Commands/blob/master/README.md</div></div><img src="https://avatars0.githubusercontent.com/u/831730?s=400&amp;v=4" class="bookmark-image"/></a></figure></details></li></ul><h2 id="eb274d01-88e9-43c6-adae-5f05f98aa416" class="">GitKraken and GitHub Desktop</h2><p id="1230d603-8a73-4932-b8f5-26984b200b3c" class="">Usually when programmers use Git for version control of their code, they use the command-line user interface, i.e. a terminal interface from a UNIX/Linux OS. However, there are several tools that enable the use of Git easily for novices using a Graphical User Interface (GUI), enabling a point-and-click interface. Two examples of GUIs are GitHub Desktop and GitKraken.</p><figure id="62a5a5cd-fcbd-4f27-9066-2dd652616284"><a href="https://www.gitkraken.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Free Git GUI Client - Windows, Mac &amp; Linux | GitKraken</div><div class="bookmark-description">Unleash GitKraken! Three legendary developer productivity tools: the Git GUI Client for Windows/Mac/Linux development, Glo Issue Boards for task tracking, and Timelines for communicating project milestones. Create one free GitKraken account!</div></div><div class="bookmark-href"><img src="https://www.gitkraken.com/favicon-16x16.png" class="icon bookmark-icon"/>https://www.gitkraken.com/</div></div><img src="https://www.gitkraken.com/img/og/og-git-client.png" class="bookmark-image"/></a></figure><figure id="3cf61b35-96ab-468f-b749-07576419acb2"><a href="https://desktop.github.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub Desktop</div><div class="bookmark-description">Checkout branches with pull requests and view CI statuses See all open pull requests for your repositories and check them out as if they were a local branch, even if they&#x27;re from upstream branches or forks. See which pull requests pass commit status checks, too!</div></div><div class="bookmark-href"><img src="https://github.githubassets.com/favicon.ico" class="icon bookmark-icon"/>https://desktop.github.com/</div></div><img src="https://desktop.github.com/images/upgrade/pr-checks.png" class="bookmark-image"/></a></figure><h1 id="85b086c6-ba93-47fe-91eb-d02dab5395f2" class="">Practice and Tasks</h1><h2 id="8ac28880-d46b-427a-87b3-57b325d42bcc" class="">First Challenge</h2><p id="26439d24-87dd-4efd-a1b4-87b8101a9ae9" class="">In this challenge, you need to fork the following project into your github account, clone it, to your system, edit the cloned repository to include your namecard. After editing, commit your changes and push them to origin after pulling any possible changes made. Open a pull request when all looks good.</p><p id="697acee2-13f8-4931-afb1-1d45badf47c3" class="">Fork from and Open your pull requests here for the first challenge</p><figure id="8bf7fbae-9df3-4b96-a054-5a58f4cb132a"><a href="https://github.com/COPS-IITBHU/cops_namecards" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">COPS-IITBHU/cops_namecards</div><div class="bookmark-description">This repository contains your first challenge of this week. To fully accomplish this challenge you should have get successfully merged your pull request about including your namecard in it. The Web Page is live at - COPS-NameCards Fork the project to your github account Clone it in your system i.e Linux/Windows Edit the cloned repository to include your NameCard When done editing, commit your work locally and push it to origin.</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/COPS-IITBHU/cops_namecards</div></div><img src="https://avatars1.githubusercontent.com/u/38392463?s=400&amp;v=4" class="bookmark-image"/></a></figure><h2 id="91c637f5-455c-42ff-bb7d-30edc36be105" class="">Second Challenge</h2><p id="6fa1b416-ca80-4d8e-98d4-868f2f238d74" class="">In this challenge,you need to implement any one algorithm on your own from the given list of algorithms. Different algorithms carry different points and your net points accumulated will be calculated. </p><p id="4a8d113b-82c2-49b2-90be-c2aab375c043" class="">As in the first challenge, You fork the repository from and submit pull requests here for this challenge</p><figure id="adcbdee7-e6c0-4552-8478-14177fc02a11"><a href="https://github.com/COPS-IITBHU/cops_algorithms" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">COPS-IITBHU/cops_algorithms</div><div class="bookmark-description">This repository includes your second challenge of this week. To accomplish this challenge successfully you had to get a PR(pull request) merged into this repository which includes an algorithm from the following given list. Your PR is required to have proper title and description and make sure the algorithm you will be adding must go in the proper folder.</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/COPS-IITBHU/cops_algorithms</div></div><img src="https://avatars1.githubusercontent.com/u/38392463?s=400&amp;v=4" class="bookmark-image"/></a></figure><p id="5e86eb1d-ab29-45c8-947a-57781d585933" class="">
+</p><p id="551ec726-a5b0-4dd6-b1fe-3968681258fe" class="">
+</p></div></article></body></html>

@@ -1,0 +1,632 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Web VR (Virtual Reality)</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="618e2619-c54f-434a-a49a-324ceab85d66" class="page sans"><header><img class="page-cover-image" src="Web%20VR%20(Virtual%20Reality)%20618e2619c54f434aa49a324ceab85d66/59be08991002280001269a58_a-frame-p-500%201.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Web%20VR%20(Virtual%20Reality)%20618e2619c54f434aa49a324ceab85d66/Icon_HMD.png"/></div><h1 class="page-title">Web VR (Virtual Reality)</h1><table class="properties"><tbody><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>Due Date</th><td><time>@Jun 2, 2020</time></td></tr></tbody></table></header><div class="page-body"><figure id="93758b27-15bd-4c4e-9516-e67b1fede119" class="image"><a href="Web%20VR%20(Virtual%20Reality)%20618e2619c54f434aa49a324ceab85d66/59be08991002280001269a58_a-frame-p-500.png"><img style="width:500px" src="Web%20VR%20(Virtual%20Reality)%20618e2619c54f434aa49a324ceab85d66/59be08991002280001269a58_a-frame-p-500.png"/></a></figure><p id="6bb6101e-5bb8-40bd-8cb1-6117bfa90693" class="">
+</p><nav id="8f5c5645-3db4-4cd7-b35b-010620809f29" class="block-color-blue table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#b42e0dd7-4ff2-4187-92e7-4a468b19e580">Introduction</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#b057c5c9-31c3-4e66-9ff1-21f440380091">Getting Started</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7ef59608-e8ac-4311-9dcd-a544e761e52d">A-Frame</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4c4a1306-2505-493e-9c3b-312d89327950">360 degree Images</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#96c46164-7b64-4813-abc9-94955feeb1c3">Resources</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4df3168d-3fe1-452d-81a1-043b436059ed">Objective: Virtual tour</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#0428450d-096a-4be9-9fa3-1e2b0a3de601">Tasks</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#734beb29-f4e3-4d1c-a9e6-7691719cbb39">Task 1 (Score it carries : 10)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e8556c05-0b09-49d8-a1e7-d7ade1f243be">Task 2 (Score it carries : 40)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b54db6ad-7f5b-4946-b9f5-cad8f5e61faf">Task 3 (Score it carries : 30)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d909d915-0575-4a54-9ec1-5e4cb485f983">Task 4 (Score it carries : 20)</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#0fdf78bc-3f6b-4d42-b929-647d75a07763">Submission</a></div></nav><h1 id="b42e0dd7-4ff2-4187-92e7-4a468b19e580" class="">Introduction</h1><p id="71c72d0a-b5c0-4fc1-bfdf-cfce4d76cd13" class="">A web framework for building virtual reality experiences. Make WebVR with HTML and Entity-Component. Works on Vive, Rift, desktop, mobile platforms.</p><p id="cee61292-dc5f-4649-a853-961283607306" class="">
+</p><h1 id="b057c5c9-31c3-4e66-9ff1-21f440380091" class="">Getting Started</h1><h2 id="7ef59608-e8ac-4311-9dcd-a544e761e52d" class="">A-Frame</h2><p id="f36f5887-4e0b-4c7a-8208-99b6fe452d04" class="">Web VR starts from AFrame. An introduction to it and it&#x27;s uses are here...</p><figure id="9541f476-c0d1-43a0-96f9-e65741a23b3c"><a href="https://aframe.io/docs/1.0.0/introduction/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Introduction - A-Frame</div></div><div class="bookmark-href"><img src="https://aframe.io/images/aframe-logo-192.png" class="icon bookmark-icon"/>https://aframe.io/docs/1.0.0/introduction/</div></div><img src="http://aframe.io/images/card.jpg?v2" class="bookmark-image"/></a></figure><h2 id="4c4a1306-2505-493e-9c3b-312d89327950" class="">360 degree Images</h2><figure id="8c5d266a-cbbd-4531-b9de-e9b0da4f6bfc"><a href="https://aframe.io/docs/1.0.0/primitives/a-sky.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">- A-Frame</div><div class="bookmark-description">The sky primitive adds a background color or 360° image to a scene. A sky is a large sphere with a color or texture mapped to the inside. An equirectangular image as a background: A plain color as a background: To be seamless, images should be equirectangular.</div></div><div class="bookmark-href"><img src="https://aframe.io/images/aframe-logo-192.png" class="icon bookmark-icon"/>https://aframe.io/docs/1.0.0/primitives/a-sky.html</div></div><img src="http://aframe.io/images/card.jpg?v2" class="bookmark-image"/></a></figure><p id="95fcf6c4-6fa6-4d73-8cf3-addbea7c633e" class="">
+</p><h2 id="96c46164-7b64-4813-abc9-94955feeb1c3" class="">Resources</h2><p id="c3ba451c-63e6-49c2-89c0-c72303a38b06" class="">Here is a YouTube Playlist you shall find very useful.. Begins at scratch and is good Intro..</p><figure id="e77e8abd-dbda-4bd6-a342-47d2e5b4d786"><a href="https://www.youtube.com/playlist?list=PLRtjMdoYXLf4inSULAHyCMqpIUj4cmBTr" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">A-Frame WebVR - YouTube</div><div class="bookmark-description">Virtual reality programming.</div></div><div class="bookmark-href"><img src="https://s.ytimg.com/yts/img/favicon-vfl8qSV2F.ico" class="icon bookmark-icon"/>https://www.youtube.com/playlist?list=PLRtjMdoYXLf4inSULAHyCMqpIUj4cmBTr</div></div><img src="https://i.ytimg.com/vi/dv6_C4UqTfs/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&amp;rs=AOn4CLC-3roa026cNHZloPuHlBphhgH1Sg" class="bookmark-image"/></a></figure><p id="ca838d76-504b-4c8a-b434-d428cc9dda53" class="">Here&#x27;s another with a slightly updated version of Aframe</p><figure id="b9232b28-36c2-42b0-b2c9-f8b311381d4c"><a href="https://www.youtube.com/playlist?list=PLUtkqA7NXVH7ctoJYhsh4xqJn3iWMpP30" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">A-Frame Tutorials</div><div class="bookmark-description">Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/bf6b5c12/htdocs-ytimg-desktop-kevlar-production/img/favicon.ico" class="icon bookmark-icon"/>https://www.youtube.com/playlist?list=PLUtkqA7NXVH7ctoJYhsh4xqJn3iWMpP30</div></div><img src="https://i.ytimg.com/vi/XFv55TajSAg/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&amp;rs=AOn4CLBwzRvwuURvQjfvzPpGEeN-3f47_w" class="bookmark-image"/></a></figure><h1 id="4df3168d-3fe1-452d-81a1-043b436059ed" class="">Objective: Virtual tour</h1><p id="e603e25a-1578-44b2-b72e-6319df19267d" class="">The Objective of this assignment is to create a Virtual WebVR experience using A-Frame through which y&#x27;all will get to familiarize yourself with the basic functioning of A-Frame and learn to create photospheres, assigning controls to buttons, interaction with objects. The individual tasks will be - Stepwise, they would carry scores, and shall to the point 🎯... Don&#x27;t tryna copy someone else&#x27;s work..(we can easily figure out 😇).</p><h1 id="0428450d-096a-4be9-9fa3-1e2b0a3de601" class="">Tasks</h1><p id="8878c2e5-1ae7-490e-90d7-b7a77ecc4a3a" class="">No CSoC week goes without an assignment. Here you go...</p><p id="1ccecdc3-05a9-4eee-b491-6f68cf42d3d9" class="">These individual tasks will be stepwise and will carry scores... Your knowledge of aframe will be the directly proportional to how many of them you can complete... The more the better for you..</p><h3 id="734beb29-f4e3-4d1c-a9e6-7691719cbb39" class="">Task 1 (Score it carries : 10)</h3><p id="9f09e0f5-a039-4a07-bc06-0a67c907271a" class="">Create a Skybox. Check for an equirectangular image that you can find from <a href="http://flickr.com/groups/equirectangular">Flickr</a>... Then create something like this :<a href="https://aframe.io/examples/showcase/sky/"> 360image</a>... Add cursor and camera to it...</p><h3 id="e8556c05-0b09-49d8-a1e7-d7ade1f243be" class="">Task 2 (Score it carries : 40)</h3><p id="e4721a6d-a8a6-4de7-bd98-e76b5aaa7e92" class="">Linking 360 images: Creating the Virtual Tour Experience can be simple enough if you can link one 360 image with another to create something like this:</p><p id="cd9f0df9-9389-4ead-b77d-7e2044dbcf07" class="">Here is the Video website. </p><figure id="5f25a0d0-9595-4116-a838-75f6bdbeff8d"><a href="https://yashrajbharti.github.io/netflix-and-chill/index.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">VR | Created with VideoJS</div></div><div class="bookmark-href">https://yashrajbharti.github.io/netflix-and-chill/index.html</div></div></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1c12a132-2d4d-4cd5-b477-8c35b300d1ea"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">A prerequisite for this is JavaScript. If you haven&#x27;t completed that, jump back to Week 0, and learn basics of JS and keep the reference handy.</div></figure><p id="a0c86f11-5b63-442c-b605-fd5bfa219ea2" class="block-color-teal_background">Hint: this can be done through javascript.</p><h3 id="b54db6ad-7f5b-4946-b9f5-cad8f5e61faf" class="">Task 3 (Score it carries : 30)</h3><p id="6bbaa225-e00f-4d55-b091-d0b3171ddaff" class="">Adding hotspots. A hotspot it some sort of object i.e. &lt;a-image&gt; , &lt;a-box&gt; etc... through which you can interact. You may have seen interaction with objects for animation and might have tried too.. But for this specific task you have to create info boxes as shown (not exactly the same :p):</p><p id="4de16703-8af5-4cfb-8a67-8a0352c1821d" class="">Visit the Video website here</p><figure id="2dafcaac-c327-430c-b27d-913d3a792a95"><a href="https://yashrajbharti.github.io/videojs/index.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">VR | Created with VideoJS</div></div><div class="bookmark-href">https://yashrajbharti.github.io/videojs/index.html</div></div></a></figure><p id="e6a5f2d5-1769-4be6-af42-dae4aa2fd448" class="">You can use &lt;a-text&gt;, maybe use some &lt;a-image&gt; for the eye icon, use JS for playing with opacity... Best is to do the way you like! , just don&#x27;t use simple HTML Tags (&lt;div&gt; &lt;p&gt;) as they don&#x27;t show up on VR-Headset and also avoid CSS Styling other than the ones supported by A-Frame (read docs), use JS instead...</p><h3 id="d909d915-0575-4a54-9ec1-5e4cb485f983" class="">Task 4 (Score it carries : 20)</h3><p id="63e92a0d-849b-4f55-967d-10128fd8d879" class="">Show your skills. Just come up with what you have learnt and give final touches to this assignment... There&#x27;s literally no restriction, you can add objects, create button, maybe introduce a videosphere!!!, make it as attractive as you can, you&#x27;ll be judged on the basis of concept and not design. Just remember to add comments to show what extra you have done and it&#x27;s functionality, push commits time to time and atleast after each task, preferably more.. </p><p id="8e64eaef-c02f-45cf-a15a-70f1f1438ca9" class=""><em>That&#x27;s it! Happy Aframing... </em></p><figure id="1f6b6523-b633-41e0-a0fb-85d544670c99" class="image"><a href="Web%20VR%20(Virtual%20Reality)%20618e2619c54f434aa49a324ceab85d66/a-scene.jpg"><img style="width:1960px" src="Web%20VR%20(Virtual%20Reality)%20618e2619c54f434aa49a324ceab85d66/a-scene.jpg"/></a></figure><h1 id="0fdf78bc-3f6b-4d42-b929-647d75a07763" class="">Submission</h1><p id="0f6218c9-f1b3-4f18-928d-d70d29a8bf2c" class="">Fork and Clone this repo (link given below). Make all necessary changes in the repo (adding index.html etc). After the completion of the task, make pull request so we can review.</p><figure id="4a2c7934-4aa3-463f-a3d9-c7175221c320"><a href="https://github.com/COPS-IITBHU/WebVR-Assignment-1" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">COPS-IITBHU/WebVR-Assignment-1</div><div class="bookmark-description">WebVR Virtual tour. Contribute to COPS-IITBHU/WebVR-Assignment-1 development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/COPS-IITBHU/WebVR-Assignment-1</div></div><img src="https://github.com/COPS-IITBHU/WebVR-Assignment-1/raw/master/a-scene.jpg" class="bookmark-image"/></a></figure><p id="c54caee1-ee1e-4fc8-adff-f1e7e52b5d56" class="">
+</p><p id="a3cbec67-0a37-4b4c-af17-8f9973dfe6a8" class="">
+</p></div></article></body></html>

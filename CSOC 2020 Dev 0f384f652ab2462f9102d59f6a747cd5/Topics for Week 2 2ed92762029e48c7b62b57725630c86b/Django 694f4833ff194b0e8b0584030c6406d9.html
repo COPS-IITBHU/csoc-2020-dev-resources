@@ -1,0 +1,634 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Django</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="694f4833-ff19-4b0e-8b05-84030c6406d9" class="page sans"><header><img class="page-cover-image" src="Django%20694f4833ff194b0e8b0584030c6406d9/django-dark.width-808.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Django%20694f4833ff194b0e8b0584030c6406d9/django-logo-F46C1DD95E-seeklogo.com.png"/></div><h1 class="page-title">Django</h1><table class="properties"><tbody><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>Due Date</th><td><time>@May 7, 2020</time></td></tr></tbody></table></header><div class="page-body"><nav id="16afe08b-8ac5-4fd2-93c3-2d471f857619" class="block-color-blue table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4169ad7e-d3e1-44ba-92c3-d34f72181e99">Introduction</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#632bdc42-4a59-4321-b8fa-50cfc84a8189">Why was Django made?</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#fc753a57-5970-4388-825d-2fc46b9ac1f0">Features</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#8e86f159-7491-42a5-955e-ead87302f782">Principles</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c320fab2-76ea-4f53-9eed-39c460be44de">Resources</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#41695ffd-50c4-4df5-9db8-1b88e2868bab">MVC (Model-View-Controller) core architecture</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#8a644159-ebbb-4301-bcd6-0474ca208ab4">Basic</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ce9f8a31-22ee-4bbe-8efb-bce4d7587d5f">User Authentication System </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#edb81e90-58f9-4f1f-a5f2-d7959f612f76">Challenge and Submission</a></div></nav><h1 id="4169ad7e-d3e1-44ba-92c3-d34f72181e99" class="">Introduction</h1><p id="71b056cc-060c-4965-ba6a-d582ac18eeb2" class="">So After AJAX, we are left with Web Backend to gain a good command over web dev. That is why we bring you here, to Django!</p><p id="f9f935a5-1608-439f-a45c-c38339081998" class="">Django is a Loosely Coupled Framework, that uses MVC (Model-View-Controller) core architecture. What is MVC, well that&#x27;s not important for now.</p><p id="241f1d32-2b17-4503-ac0e-089650d49239" class="">Here is a brief intro to why we use Django:</p><figure id="678ed387-59de-4eb5-adad-3ddd6b793bb9"><a href="https://djangostars.com/blog/why-we-use-django-framework/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Why We Use Django Framework &amp; What Is Django Best Used For</div><div class="bookmark-description">Choosing a web development framework is a big deal. There are quite a few frameworks on the market, each designed to address different project needs. For many companies and independent projects, the Django framework is an easy choice - it&#x27;s one of the most popular web development tools. But why is that?</div></div><div class="bookmark-href"><img src="https://djangostars.com/blog/contents/themes/djangostars/favicons/favicon.png" class="icon bookmark-icon"/>https://djangostars.com/blog/why-we-use-django-framework/</div></div><img src="https://djangostars.com/blog/uploads/2018/12/cover-3.png" class="bookmark-image"/></a></figure><p id="aeef69bc-7139-4b8e-afb2-d965083bb37f" class="">Check out the official site:</p><figure id="8cf49543-9112-4cc2-9481-999935edb28a"><a href="https://www.djangoproject.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Django</div><div class="bookmark-description">Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design. Built by experienced developers, it takes care of much of the hassle of Web development, so you can focus on writing your app without needing to reinvent the wheel. It&#x27;s free and open source.</div></div><div class="bookmark-href"><img src="https://static.djangoproject.com/img/favicon.6dbf28c0650e.ico" class="icon bookmark-icon"/>https://www.djangoproject.com/</div></div></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="5f289eba-10ba-4594-b7a6-e839563b8aae"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Django likes to call itself <em>&quot;The Web Framework for Perfectionists with Deadlines&quot;</em>. Hopefully you&#x27;ll be able to validate the authenticity of their claim by the end of next week! 😉</div></figure><h3 id="632bdc42-4a59-4321-b8fa-50cfc84a8189" class="">Why was Django made?</h3><p id="cf8de1e4-ae9e-4fc2-a741-0592de5085c4" class="">The backend developers needed a common interface to be able to work with seemingly different data sources and database software.</p><p id="5c5ad27a-f7fe-40a5-9483-780f718b7df4" class="">The design teams needed to manage the user experience with the tools they already had (HTML, CSS, JavaScript etc.)</p><p id="33c1fd17-ff16-4cde-a85d-5077825a58e3" class="">The hard-core coders needed a framework that allowed them to rapidly deploy changes within the system that kept everyone happy.</p><h3 id="fc753a57-5970-4388-825d-2fc46b9ac1f0" class="">Features</h3><p id="b1072715-eda6-4bbf-817d-abb434a9e04d" class="">Django has </p><ul id="79b135a3-2444-4733-b60b-03df1b3bf63b" class="bulleted-list"><li>Simple syntax</li></ul><ul id="0d77c29c-5d01-4d7d-bdf5-8f090effa867" class="bulleted-list"><li>Its own web server to test locally </li></ul><ul id="f5abdcd5-b284-4e72-b59e-d0eaeb088c59" class="bulleted-list"><li>MVC (Model-View-Controller) core architecture</li></ul><ul id="176e71d6-1b72-4637-8ce3-6a213b8ee882" class="bulleted-list"><li>Django comes with all the essentials needed for solving common cases</li></ul><ul id="72bdba70-0d96-4351-94ec-64b09c28ff2f" class="bulleted-list"><li>HTTP libraries;</li></ul><ul id="7f6e8073-2a4b-42ee-9972-3b396d2aceb5" class="bulleted-list"><li>Middleware support</li></ul><ul id="17c9b604-b26c-4b10-ba9a-56a74e62f56a" class="bulleted-list"><li>Great community support</li></ul><ul id="d5d8d338-9d6f-4536-8b6b-179a115fc1ad" class="bulleted-list"><li>Lots of libraries available to extend the functionality</li></ul><h3 id="8e86f159-7491-42a5-955e-ead87302f782" class="">Principles</h3><figure id="81d4a3ed-e06a-4cf0-924c-4cbc683426c7"><a href="https://docs.djangoproject.com/en/3.0/misc/design-philosophies/#don-t-repeat-yourself-dry" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Design philosophies | Django documentation | Django</div><div class="bookmark-description">A fundamental goal of Django&#x27;s stack is loose coupling and tight cohesion. The various layers of the framework shouldn&#x27;t &quot;know&quot; about each other unless absolutely necessary. For example, the template system knows nothing about Web requests, the database layer knows nothing about data display and the view system doesn&#x27;t care which template system a programmer uses.</div></div><div class="bookmark-href"><img src="https://static.djangoproject.com/img/favicon.6dbf28c0650e.ico" class="icon bookmark-icon"/>https://docs.djangoproject.com/en/3.0/misc/design-philosophies/#don-t-repeat-yourself-dry</div></div></a></figure><p id="c72769aa-8b94-4b13-94d0-6b173eea9e68" class="">Most important principles to remember:</p><ol id="042f6a72-b9b9-4eee-bb8b-7b4dd12b6385" class="numbered-list" start="1"><li><strong>DRY</strong> aka <strong>Don&#x27;t Repeat Yourself</strong></li></ol><ol id="ff6b1bca-86a8-4a16-9eee-dac828303601" class="numbered-list" start="2"><li>Loose Coupling</li></ol><ol id="9dc3b4d5-9055-4d19-8e26-0219f46e6185" class="numbered-list" start="3"><li>Explicit is better than implicit</li></ol><ol id="dd8280fe-b3ad-4342-9179-0012d8e2ada0" class="numbered-list" start="4"><li><strong>EAFP</strong> aka <strong>Easier to Ask Forgiveness than Permission</strong> (<a href="https://devblogs.microsoft.com/python/idiomatic-python-eafp-versus-lbyl/">read more</a>)</li></ol><ol id="905e9a80-e71b-4b2d-914e-24375afc28c7" class="numbered-list" start="5"><li>Efficient SQL Queries</li></ol><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="6c087ae6-4651-4103-aeda-93837e315eb2"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Don&#x27;t worry, if you do not understand all of the above principles right now. You&#x27;ll understand and appreciate them as you work more with the framework. </div></figure><h1 id="c320fab2-76ea-4f53-9eed-39c460be44de" class="">Resources</h1><h2 id="41695ffd-50c4-4df5-9db8-1b88e2868bab" class="">MVC (Model-View-Controller) core architecture</h2><p id="a2d0466e-ab60-4a23-bb63-d04c5dae5360" class="">
+</p><figure id="bfa9ee40-af07-43bd-b093-b7beeab3e68b"><a href="https://medium.com/shecodeafrica/understanding-the-mvc-pattern-in-django-edda05b9f43f" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Understanding the MVC pattern in Django</div><div class="bookmark-description">In my previous post, i put up a tutorial for beginners on how to get started with Django, here.</div></div><div class="bookmark-href"><img src="https://cdn-static-1.medium.com/_/fp/icons/favicon-rebrand-medium.3Y6xpZ-0FSdWDnPM3hSBIA.ico" class="icon bookmark-icon"/>https://medium.com/shecodeafrica/understanding-the-mvc-pattern-in-django-edda05b9f43f</div></div><img src="https://miro.medium.com/max/1276/1*pHlF3KufWwX7svv4Mv4Frg.jpeg" class="bookmark-image"/></a></figure><h2 id="8a644159-ebbb-4301-bcd6-0474ca208ab4" class="">Basic</h2><p id="0b4c6c59-4ff7-41cf-b58c-3e4a0b0702b6" class="">
+</p><p id="49cde21b-e49a-443e-85a9-957ce8a97ee9" class="">Here is a complete tutorial in Django</p><figure id="658163de-b49b-409b-b068-9a91fcdee3d3"><a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Django Web Framework (Python)</div><div class="bookmark-description">Django is an extremely popular and fully featured server-side web framework, written in Python. This module shows you why Django is one of the most popular web server frameworks, how to set up a development environment, and how to start using it to create your own web applications.</div></div><div class="bookmark-href"><img src="https://developer.mozilla.org/static/img/favicon32.7f3da72dcea1.png" class="icon bookmark-icon"/>https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django</div></div><img src="https://developer.mozilla.org/static/img/opengraph-logo.72382e605ce3.png" class="bookmark-image"/></a></figure><p id="88f1ea2f-098d-4880-911f-9ba6a39722ad" class="">
+</p><p id="2834f627-bc6f-4c99-b9b2-f3b243b196ce" class="">Alternatively, another popular Django learning site is Django Girls.</p><figure id="0fef39d7-8ddc-4120-a325-d1b744893e04"><a href="https://tutorial.djangogirls.org/en/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Django Girls Tutorial</div><div class="bookmark-description">This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/ Welcome to the Django Girls Tutorial!</div></div><div class="bookmark-href"><img src="https://tutorial.djangogirls.org/gitbook/images/favicon.ico" class="icon bookmark-icon"/>https://tutorial.djangogirls.org/en/</div></div><img src="https://djangogirls.org/static/img/global/donate/lagos.jpg" class="bookmark-image"/></a></figure><p id="a4d6c104-d389-40b3-988e-cb1393598b05" class="">
+</p><p id="f1fd3f32-9cbc-4945-82f5-55a97c68e8da" class="">With so much serious content, you could also do well with something less technical. Here you go! </p><figure id="936503f8-9dc9-4e50-8b62-45ca80c63de2"><a href="https://simpleisbetterthancomplex.com/series/2017/09/04/a-complete-beginners-guide-to-django-part-1.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">A Complete Beginner&#x27;s Guide to Django - Part 1</div><div class="bookmark-description">Introduction Today I&#x27;m starting a new tutorial series about Django fundamentals. It&#x27;s a complete beginner&#x27;s guide to start learning Django. The material is divided into seven parts. We&#x27;re going to explore all the basic concepts in great detail, from installation, preparation of the development environment, models, views, templates, URLs to more advanced topics such as migrations, testing, and deployment.</div></div><div class="bookmark-href"><img src="https://simpleisbetterthancomplex.com/favicon.png" class="icon bookmark-icon"/>https://simpleisbetterthancomplex.com/series/2017/09/04/a-complete-beginners-guide-to-django-part-1.html</div></div><img src="https://simpleisbetterthancomplex.com/media/series/beginners-guide/1.11/part-1/thumbnail.jpg" class="bookmark-image"/></a></figure><p id="23ae13cf-50d3-47ae-9eb8-fd995808b749" class="">Being just introduced to Django, it would be of help to get tips from time tested users of Django. </p><figure id="19b03c83-cd46-4295-a9a1-8ecae9d596c4"><a href="https://simpleisbetterthancomplex.com/archive/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Article Archive - Simple is Better Than Complex</div><div class="bookmark-description">This is a blog about Python, Django and Web Development. New posts every week.</div></div><div class="bookmark-href"><img src="https://simpleisbetterthancomplex.com/favicon.png" class="icon bookmark-icon"/>https://simpleisbetterthancomplex.com/archive/</div></div><img src="https://simpleisbetterthancomplex.com/img/facebook_banner.jpg" class="bookmark-image"/></a></figure><p id="d167698c-89e4-46e0-bb6f-07c65732e926" class="">
+</p><h2 id="ce9f8a31-22ee-4bbe-8efb-bce4d7587d5f" class="">User Authentication System </h2><p id="38507d08-ea0c-4e04-96fc-ce01e9ff13df" class="">Creating a backend without user login and authentication is incomplete. A user authentication system makes the app personalised for users. It takes the web app to altogether another level. Django has a built in authentication system,getting your work done with almost no effort, giving you most of the joy.</p><p id="816514b3-747b-4b61-a21d-215e3073c001" class="">Here you can learn more about it:</p><figure id="5a2fca77-32fe-46a1-b16f-e21657d4f872"><a href="https://learndjango.com/tutorials/django-login-and-logout-tutorial" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Django Login and Logout Tutorial | LearnDjango</div><div class="bookmark-description">How to implement login and logout in Django 3.0 In this tutorial we&#x27;ll learn how to configure login/logout functionality with Django&#x27;s the built-in user authentication system. This is the first in a three-part series that also covers signup and password reset for a complete user authentication flow in your future Django projects.</div></div><div class="bookmark-href">https://learndjango.com/tutorials/django-login-and-logout-tutorial</div></div><img src="https://learndjango.com/static/images/tutorials/login_logout/admin-logout.png" class="bookmark-image"/></a></figure><p id="2e978660-21f9-4749-8330-3765e9887553" class="">
+</p><p id="8d4f21bd-0d9c-44eb-ae26-98aa9950d383" class="">For Custom Login UI, try out this:</p><figure id="bbca799f-7f02-4e6d-af33-cfc7a152b2be"><a href="https://www.fir3net.com/Web-Development/Django/django.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title"></div></div><div class="bookmark-href"><img src="https://www.fir3net.com/favicon.ico" class="icon bookmark-icon"/>https://www.fir3net.com/Web-Development/Django/django.html</div></div></a></figure><p id="d5e9cf6f-de40-42db-bae8-ee489d0f9e9c" class="">
+</p><h1 id="edb81e90-58f9-4f1f-a5f2-d7959f612f76" class="">Challenge and Submission</h1><p id="dd0a4413-9077-460e-ba0e-5be5e4187954" class=""><strong>So much for learning, here is your next Assignment!</strong></p><p id="283c3281-c67f-4b6d-9d2b-0c0ac60937c1" class=""><strong>All the details of the task are provided in the</strong><a href="https://github.com/COPS-IITBHU/csoc-2020-task-2/blob/master/README.md"><strong> README.md</strong></a><strong> file.</strong></p><p id="38ed502b-615a-4ba0-9c98-aa9e8e234f92" class=""><strong>As you are aware, you need to fork from and the repository, clone the forked repository, complete the task, commit and push your changes and finally open the pull request back here.</strong></p><figure id="bcd99c03-39bc-44a1-8b69-9e8da8a32c6d"><a href="https://github.com/COPS-IITBHU/csoc-2020-task-2" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">COPS-IITBHU/csoc-2020-task-2</div><div class="bookmark-description">Welcome to the Week 2 of CSOC Dev. In this assignment, you will be working on the Django backend of a library web application. A boilerplate has already been created for you and all that remains is to fill in the code wherever we&#x27;ve asked you to, or wherever you feel required.</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/COPS-IITBHU/csoc-2020-task-2</div></div><img src="https://avatars1.githubusercontent.com/u/38392463?s=400&amp;v=4" class="bookmark-image"/></a></figure></div></article></body></html>
